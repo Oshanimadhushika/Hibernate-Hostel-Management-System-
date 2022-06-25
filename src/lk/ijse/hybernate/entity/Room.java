@@ -17,7 +17,7 @@ import java.util.List;
 @Setter
 @Data
 @Entity(name = "room")
-public class Room {
+public class Room implements SuperEntity {
     @Id
     private String room_type_id;
     @Column(nullable = false)

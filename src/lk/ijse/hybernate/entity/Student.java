@@ -19,7 +19,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity(name = "student")
-public class Student {
+public class Student implements SuperEntity{
     @Id
     private String student_id;
     @Column(nullable = false)
