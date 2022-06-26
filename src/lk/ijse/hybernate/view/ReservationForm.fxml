@@ -8,19 +8,21 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Ellipse?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane fx:id="ReservationFormContext" prefHeight="537.0" prefWidth="985.0" style="-fx-background-color: #222f3e;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.hybernate.controller.ReservationFormController">
    <children>
+      <Ellipse fill="#95a5a6c7" layoutX="345.0" layoutY="58.0" radiusX="61.0" radiusY="43.0" stroke="#d9d018" strokeType="INSIDE" />
       <Label layoutX="15.0" layoutY="14.0" prefHeight="52.0" prefWidth="189.0" text="Reservation" textFill="WHITE">
          <font>
             <Font name="Ebrima Bold" size="23.0" />
          </font>
       </Label>
       <Line endX="857.0" layoutX="119.0" layoutY="291.0" startX="-111.0" stroke="WHITE" />
-      <Label layoutX="14.0" layoutY="60.0" prefHeight="25.0" prefWidth="355.0" text="Reserve room  | Delete reserve" textFill="WHITE">
+      <Label layoutX="14.0" layoutY="60.0" prefHeight="43.0" prefWidth="216.0" text="Reserve room  | Delete reserve" textFill="WHITE">
          <font>
             <Font name="Javanese Text" size="15.0" />
          </font>
@@ -91,5 +93,74 @@
       <Line endX="859.0" layoutX="117.0" layoutY="110.0" startX="-100.0" stroke="WHITE" />
       <TextField fx:id="txtStatus" layoutX="35.0" layoutY="305.0" prefHeight="25.0" prefWidth="208.0" promptText="Status" />
       <TextField fx:id="txtStudentQty" layoutX="278.0" layoutY="305.0" prefHeight="25.0" prefWidth="208.0" promptText="Student Qty" />
+      <Label layoutX="577.0" layoutY="-2.0" prefHeight="24.0" prefWidth="169.0" text="Room Availability" textFill="WHITE">
+         <font>
+            <Font name="Corbel Italic" size="17.0" />
+         </font>
+      </Label>
+      <Line endX="-127.0" endY="33.0" layoutX="382.0" layoutY="60.0" startX="-127.0" startY="-45.0" stroke="#f5cd2e" />
+      <Text layoutX="319.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="RM-1324">
+         <font>
+            <Font name="Impact" size="15.0" />
+         </font>
+      </Text>
+      <Text layoutX="323.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Non-AC">
+         <font>
+            <Font name="Impact" size="15.0" />
+         </font>
+      </Text>
+      <Label fx:id="lblRoomQty1" layoutX="333.0" layoutY="68.0" text="35" textFill="#fad620">
+         <font>
+            <Font name="Impact" size="22.0" />
+         </font>
+      </Label>
+      <Ellipse fx:id="lblRoomQty2" fill="#95a5a6c7" layoutX="511.0" layoutY="60.0" radiusX="61.0" radiusY="43.0" stroke="#d9d018" strokeType="INSIDE" />
+      <Ellipse fill="#95a5a6c7" layoutX="753.0" layoutY="58.0" radiusX="61.0" radiusY="43.0" stroke="#d9d018" strokeType="INSIDE" />
+      <Ellipse fill="#95a5a6c7" layoutX="900.0" layoutY="58.0" radiusX="61.0" radiusY="43.0" stroke="#d9d018" strokeType="INSIDE" />
+      <Text layoutX="485.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="RM-5467">
+         <font>
+            <Font name="Impact" size="15.0" />
+         </font>
+      </Text>
+      <Text layoutX="467.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Non-AC/Foood">
+         <font>
+            <Font name="Impact" size="15.0" />
+         </font>
+      </Text>
+      <Label layoutX="499.0" layoutY="64.0" text="20" textFill="#fad620">
+         <font>
+            <Font name="Impact" size="22.0" />
+         </font>
+      </Label>
+      <Text layoutX="727.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="RM-7896">
+         <font>
+            <Font name="Impact" size="15.0" />
+         </font>
+      </Text>
+      <Text layoutX="746.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AC">
+         <font>
+            <Font name="Impact" size="15.0" />
+         </font>
+      </Text>
+      <Label fx:id="lblRoomQty3" layoutX="741.0" layoutY="64.0" text="14" textFill="#fad620">
+         <font>
+            <Font name="Impact" size="22.0" />
+         </font>
+      </Label>
+      <Text layoutX="874.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="RM-0093">
+         <font>
+            <Font name="Impact" size="15.0" />
+         </font>
+      </Text>
+      <Text layoutX="878.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AC/Food">
+         <font>
+            <Font name="Impact" size="15.0" />
+         </font>
+      </Text>
+      <Label fx:id="lblRoomQty4" layoutX="888.0" layoutY="66.0" text="10" textFill="#fad620">
+         <font>
+            <Font name="Impact" size="22.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
