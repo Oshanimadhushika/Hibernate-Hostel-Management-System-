@@ -19,5 +19,6 @@ public class UserLogin {
     @Column(nullable = false)
     private String user_name;
     @Column(nullable = false)
-    private String passward;
+    private String password;
+
 }

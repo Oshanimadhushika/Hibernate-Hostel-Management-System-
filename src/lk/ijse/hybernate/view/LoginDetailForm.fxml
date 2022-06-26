@@ -34,7 +34,7 @@
          </font>
       </Text>
       <JFXTextField fx:id="txtUserID" layoutX="143.0" layoutY="149.0" prefHeight="25.0" prefWidth="200.0" unFocusColor="#fffdfd" />
-      <Text fill="WHITE" layoutX="477.0" layoutY="181.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Passward:" wrappingWidth="128.501953125">
+      <Text fill="WHITE" layoutX="477.0" layoutY="181.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password:" wrappingWidth="128.501953125">
          <font>
             <Font size="18.0" />
          </font>
@@ -60,7 +60,7 @@
          <columns>
             <TableColumn fx:id="colUserID" prefWidth="128.0" style="fx-border-colour: red;" text="User ID" />
             <TableColumn fx:id="colUserName" prefWidth="168.0" text="UserName" />
-            <TableColumn fx:id="colPassward" prefWidth="211.0" text="Passward" />
+            <TableColumn fx:id="colPassward" prefWidth="211.0" text="Password" />
          </columns>
       </TableView>
    </children>

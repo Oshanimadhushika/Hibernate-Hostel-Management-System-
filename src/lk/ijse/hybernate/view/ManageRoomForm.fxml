@@ -70,5 +70,10 @@
             <TableColumn fx:id="colRoomQty" prefWidth="182.0" text="Room Qty" />
          </columns>
       </TableView>
+      <Label layoutX="166.0" layoutY="226.0" text="[AC ||Non AC || Non AC /Food || AC/Food]" textFill="#f5f5f5">
+         <font>
+            <Font name="Marlett" size="12.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
