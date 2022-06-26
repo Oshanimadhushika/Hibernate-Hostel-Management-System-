@@ -3,10 +3,12 @@ package lk.ijse.hybernate.controller;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.shape.Ellipse;
 
 public class ReservationFormController {
     public AnchorPane ReservationFormContext;
@@ -26,10 +28,18 @@ public class ReservationFormController {
     public JFXTextField txtRoomQty;
     public TextField txtStatus;
     public TextField txtStudentQty;
+    public Label lblRoomQty1;
+    public Ellipse lblRoomQty2;
+    public Label lblRoomQty3;
+    public Label lblRoomQty4;
+    public TextField txtSearch;
 
     public void ReserveOnAction(ActionEvent actionEvent) {
     }
 
     public void updateOnAction(ActionEvent actionEvent) {
+    }
+
+    public void AddToRemainOnAction(ActionEvent actionEvent) {
     }
 }

@@ -1,4 +1,7 @@
 package lk.ijse.hybernate.bo;
 
-public class BOTypes {
-}
+public enum  BOTypes {
+
+        STUDENT,ROOM,RESERVATION,user
+    }
+

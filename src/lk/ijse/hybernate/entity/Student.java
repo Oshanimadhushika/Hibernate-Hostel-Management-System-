@@ -19,21 +19,23 @@ import java.util.List;
 @Getter
 @Setter
 @Entity(name = "student")
-public class Student implements SuperEntity{
+public class Student implements SuperEntity {
     @Id
     private String student_id;
     @Column(nullable = false)
     private String studentName;
-    @Column(columnDefinition = "TEXT",nullable = false)
-    private  String studentAddress;
+    @Column(columnDefinition = "TEXT", nullable = false)
+    private String studentAddress;
     @Column(nullable = false)
     private String contac_no;
-    @Column(columnDefinition = "DATE",nullable = false)
+    @Column(columnDefinition = "DATE", nullable = false)
     private LocalDate dob;
     @Column(nullable = false)
     private String gender;
 
     @OneToMany(mappedBy = "student")
     @Cascade(CascadeType.ALL)
-    List<Reservation> reservations=new ArrayList<>();
+    List<Reservation> reservations = new ArrayList<>();
+
+
 }

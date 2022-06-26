@@ -23,12 +23,28 @@ public class StudentDAOImpl implements StudentDAO {
 
     @Override
     public boolean update(Student entity) throws Exception {
-        return false;
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        session.update(entity);
+
+        transaction.commit();
+        session.close();
+        return true;
     }
 
     @Override
     public boolean delete(String s) throws Exception {
-        return false;
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        Student student= session.load(Student.class, s);
+
+        session.delete(student);
+
+        transaction.commit();
+        session.close();
+        return true;
     }
 
     @Override

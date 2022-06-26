@@ -79,4 +79,11 @@ public class DashBoardFormController {
         Parent parent = FXMLLoader.load(getClass().getResource("../view/LoginDetailForm.fxml"));
         DashBoard2Context.getChildren().add(parent);
     }
+
+    public void RemainKeyMoneyOnAction(ActionEvent actionEvent) throws IOException {
+
+        DashBoard2Context.getChildren().clear();
+        Parent parent = FXMLLoader.load(getClass().getResource("../view/RemainKeyMoneyForm.fxml"));
+        DashBoard2Context.getChildren().add(parent);
+    }
 }
