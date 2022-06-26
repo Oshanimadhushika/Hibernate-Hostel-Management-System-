@@ -28,7 +28,7 @@ public class Room implements SuperEntity {
     private int qty;
 
 
-    @OneToMany(mappedBy = "Room")
+    @OneToMany(mappedBy = "room")
     @Cascade(CascadeType.ALL)
-   List<Student> studentList=new ArrayList<>();
+   List<Reservation> roomDetails=new ArrayList<>();
 }

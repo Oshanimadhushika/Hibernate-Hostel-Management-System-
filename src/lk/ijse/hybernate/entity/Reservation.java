@@ -10,22 +10,20 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Getter
 @Setter
-@Entity(name = "reservation")
+@Entity
 public class Reservation implements SuperEntity{
     @Id
     private String res_id;
     @Column(columnDefinition = "DATE")
     private LocalDate date;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @Column(nullable = false)
-    @JoinColumn(name = "student_id")
-    private String student_id;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "student_id",referencedColumnName = "student_id")
+    private Student student;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @Column(nullable = false)
-    @JoinColumn(name = "room_type_id")
-    private String room_type_id;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "room_type_id",referencedColumnName = "room_type_id")
+    private Room room;
 
     private double key_money;
     private String status;

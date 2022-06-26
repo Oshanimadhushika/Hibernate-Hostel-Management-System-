@@ -33,7 +33,7 @@ public class Student implements SuperEntity{
     @Column(nullable = false)
     private String gender;
 
-    @OneToMany(mappedBy = "Student")
+    @OneToMany(mappedBy = "student")
     @Cascade(CascadeType.ALL)
-    List<Room> roomList=new ArrayList<>();
+    List<Reservation> reservations=new ArrayList<>();
 }

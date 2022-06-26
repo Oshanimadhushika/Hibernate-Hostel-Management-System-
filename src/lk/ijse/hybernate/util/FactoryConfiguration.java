@@ -15,10 +15,10 @@ import java.util.Properties;
 
 public class FactoryConfiguration {
     private static FactoryConfiguration factoryConfiguration;
-    private final SessionFactory sessionFactory;
+    private  SessionFactory sessionFactory;
 
-  private FactoryConfiguration() throws IOException {
-      Configuration configuration = new Configuration();
+  private FactoryConfiguration() {
+     /* Configuration configuration = new Configuration();
       Properties p = new Properties();
       p.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("hibernate.properties"));
 
@@ -27,10 +27,24 @@ public class FactoryConfiguration {
       configuration.addAnnotatedClass(Student.class);
       configuration.addAnnotatedClass(Room.class);
       configuration.addAnnotatedClass(Reservation.class);
-      configuration.addAnnotatedClass(UserLogin.class);
+      configuration.addAnnotatedClass(UserLogin.class);*/
+
+      Properties p = new Properties();
+      try {
+          p.load(ClassLoader.getSystemClassLoader().getResourceAsStream("lk/ijse/hybernate/resources/hibernate.properties"));
 
 
-      sessionFactory=configuration.buildSessionFactory();
+      Configuration configuration = new Configuration().mergeProperties(p)
+              .addAnnotatedClass(Student.class)
+              .addAnnotatedClass(Room.class)
+              .addAnnotatedClass(Reservation.class)
+              .addAnnotatedClass(UserLogin.class);
+
+sessionFactory=configuration.buildSessionFactory();
+
+      } catch (IOException e) {
+          // e.printStackTrace();
+  }
   }
   public static FactoryConfiguration getInstance() throws IOException {
       return (factoryConfiguration==null)? factoryConfiguration=new FactoryConfiguration() : factoryConfiguration;

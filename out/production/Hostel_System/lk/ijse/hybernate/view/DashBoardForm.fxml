@@ -2,6 +2,8 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
@@ -9,7 +11,24 @@
 
 <AnchorPane fx:id="DashBoardFormContext" prefHeight="643.0" prefWidth="1252.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.hybernate.controller.DashBoardFormController">
    <children>
-      <AnchorPane fx:id="DashBoard2Context" layoutX="237.0" layoutY="76.0" opacity="0.62" prefHeight="537.0" prefWidth="985.0" style="-fx-background-color: white;" />
+      <AnchorPane fx:id="DashBoard2Context" layoutX="237.0" layoutY="76.0" opacity="0.62" prefHeight="537.0" prefWidth="985.0" style="-fx-background-color: white;">
+         <children>
+            <ImageView fitHeight="465.0" fitWidth="873.0" layoutX="41.0" layoutY="40.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../assert/WhatsApp%20Image%202022-06-26%20at%2012.29.20%20AM.jpeg" />
+               </image>
+            </ImageView>
+            <Label layoutX="120.0" layoutY="40.0" prefHeight="215.0" prefWidth="452.0" text="WELCOME" textFill="WHITE">
+               <font>
+                  <Font name="Impact" size="96.0" />
+               </font>
+            </Label>
+            <Label layoutX="313.0" layoutY="287.0" prefHeight="215.0" prefWidth="569.0" text="D24 Hostel" textFill="WHITE">
+               <font>
+                  <Font name="Ink Free" size="96.0" />
+               </font>
+            </Label>
+         </children></AnchorPane>
       <Text fill="#fcfcfc" layoutX="970.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DATE:">
          <font>
             <Font name="System Bold" size="14.0" />
