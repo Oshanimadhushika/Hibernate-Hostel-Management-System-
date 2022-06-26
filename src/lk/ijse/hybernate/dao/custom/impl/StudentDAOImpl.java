@@ -11,14 +11,14 @@ import java.util.List;
 public class StudentDAOImpl implements StudentDAO {
     @Override
     public boolean add(Student entity) throws Exception {
-        /*Session session = FactoryConfiguration.getInstance().getSession();
+        Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
 
         session.save(entity);
 
         transaction.commit();
-        session.close();*/
-        return false;
+        session.close();
+        return true;
     }
 
     @Override

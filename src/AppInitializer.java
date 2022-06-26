@@ -27,12 +27,12 @@ public class AppInitializer extends Application {
 
         Student s1 = new Student();
 
-        Session session = FactoryConfiguration.getInstance().getSession();
+       /* Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
 
         session.save(s1);
 
         transaction.commit();
-        session.close();
+        session.close();*/
     }
 }
