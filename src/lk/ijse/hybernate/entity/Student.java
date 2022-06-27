@@ -37,5 +37,9 @@ public class Student implements SuperEntity {
     @Cascade(CascadeType.ALL)
     List<Reservation> reservations = new ArrayList<>();
 
+    public Student(String studentID, String studentName, String address, String contactNo, String dob, String gender) {
+    }
+
+
 
 }

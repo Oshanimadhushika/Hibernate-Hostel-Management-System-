@@ -3,10 +3,19 @@ package lk.ijse.hybernate.bo.custom;
 import lk.ijse.hybernate.bo.SuperBO;
 import lk.ijse.hybernate.dto.StudentDTO;
 
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 public interface StudentBO extends SuperBO {
-    public boolean add(StudentDTO studentDTO) throws Exception;
+    List<StudentDTO> getAllStudent() throws IOException;
 
-    public boolean update(StudentDTO studentDTO) throws Exception;
+    boolean saveStudent(StudentDTO dto) throws IOException;
 
-    public boolean delete(String id) throws Exception;
+    boolean updateStudent(StudentDTO dto) throws IOException;
+
+    boolean deleteStudent(String id) throws IOException;
+
+    //String generateStudentId();
 }

@@ -164,12 +164,12 @@
             <Font name="Impact" size="22.0" />
          </font>
       </Label>
-      <JFXButton layoutX="773.0" layoutY="301.0" onAction="#AddToRemainOnAction" prefHeight="34.0" prefWidth="200.0" style="-fx-background-color: #f1c40f;" text="Add to Remain Key-money">
+      <JFXButton fx:id="btnAddToRemain" layoutX="773.0" layoutY="301.0" onAction="#AddToRemainOnAction" prefHeight="34.0" prefWidth="200.0" style="-fx-background-color: #f1c40f;" text="Add to Remain Key-money">
          <font>
             <Font name="Impact" size="16.0" />
          </font>
       </JFXButton>
-      <TextField fx:id="txtSearch" alignment="CENTER" layoutX="535.0" layoutY="118.0" prefHeight="25.0" prefWidth="423.0" promptText="Search " />
+      <TextField fx:id="txtSearch" alignment="CENTER" layoutX="535.0" layoutY="118.0" onKeyReleased="#Search_On_Key_Released" prefHeight="25.0" prefWidth="423.0" promptText="Search " />
       <ImageView fitHeight="25.0" fitWidth="24.0" layoutX="535.0" layoutY="118.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assert/icons8-search-24.png" />

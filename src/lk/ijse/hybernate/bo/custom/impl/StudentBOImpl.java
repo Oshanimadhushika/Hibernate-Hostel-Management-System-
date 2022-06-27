@@ -10,30 +10,69 @@ import lk.ijse.hybernate.dao.custom.impl.StudentDAOImpl;
 import lk.ijse.hybernate.dto.StudentDTO;
 import lk.ijse.hybernate.entity.Student;
 
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 public class StudentBOImpl implements StudentBO {
 
-    StudentDAOImpl studentDAO = DAOFactory.getInstance().getDAO(DAOType.STUDENT);
+    StudentDAO studentDAO = DAOFactory.getInstance().getDAO(DAOType.STUDENT);
 
     @Override
-    public boolean add(StudentDTO studentDTO) throws Exception {
-       /* return studentDAO.add(new Student(
-                studentDTO.getStudentID(),
-                studentDTO.getStudentName(),
-                studentDTO.getAddress(),
-                studentDTO.getContactNo(),
-                studentDTO.getDob(),
-                studentDTO.getGender()
-        ));*/
-        return false;
+    public List<StudentDTO> getAllStudent() throws IOException {
+
+        List<Student> all = studentDAO.getAll();
+        ArrayList<StudentDTO> allStudents = new ArrayList<>();
+
+        for(Student s: all){
+            allStudents.add(new StudentDTO(
+                    s.getStudent_id(),
+                    s.getStudentName(),
+                    s.getStudentAddress(),
+                    s.getContac_no(),
+                    String.valueOf(s.getDob()),
+                    s.getGender()));
+        }
+
+        return allStudents;
     }
 
     @Override
-    public boolean update(StudentDTO studentDTO) throws Exception {
-        return false;
+    public boolean saveStudent(StudentDTO dto) throws IOException {
+        return studentDAO.save(new Student(
+                dto.getStudentID(),
+                dto.getStudentName(),
+                dto.getAddress(),
+                dto.getContactNo(),
+                dto.getDob(),
+                dto.getGender()
+
+        ));
     }
 
     @Override
-    public boolean delete(String id) throws Exception {
-        return false;
+    public boolean updateStudent(StudentDTO dto) throws IOException {
+        return studentDAO.update(new Student(
+                dto.getStudentID(),
+                dto.getStudentName(),
+                dto.getAddress(),
+                dto.getContactNo(),
+                dto.getDob(),
+                dto.getGender()
+
+        ));
     }
+
+    @Override
+    public boolean deleteStudent(String id) throws IOException {
+        return studentDAO.delete(id);
+    }
+
+   /* @Override
+    public String generateStudentId() {
+        return null;
+    }
+*/
+
 }

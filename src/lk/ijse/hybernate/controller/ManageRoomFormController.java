@@ -1,5 +1,6 @@
 package lk.ijse.hybernate.controller;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
@@ -18,6 +19,7 @@ public class ManageRoomFormController {
     public TableColumn colKeymny;
     public TableColumn colRoomQty;
     public JFXComboBox cmbRoomID;
+    public JFXButton btnAddNewRoom;
 
     public void AddNewRoomOnAction(ActionEvent actionEvent) {
     }

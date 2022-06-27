@@ -30,7 +30,7 @@
             <TableColumn fx:id="colStatus" prefWidth="240.0" text="Status" />
          </columns>
       </TableView>
-      <TextField fx:id="txtSearch" alignment="CENTER" layoutX="118.0" layoutY="149.0" prefHeight="25.0" prefWidth="423.0" promptText="Search " />
+      <TextField fx:id="txtSearch" alignment="CENTER" layoutX="118.0" layoutY="149.0" onKeyReleased="#Search_On_Key_Released" prefHeight="25.0" prefWidth="423.0" promptText="Search " />
       <ImageView fitHeight="25.0" fitWidth="24.0" layoutX="118.0" layoutY="149.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assert/icons8-search-24.png" />

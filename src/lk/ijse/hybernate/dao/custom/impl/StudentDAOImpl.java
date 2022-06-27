@@ -2,17 +2,34 @@ package lk.ijse.hybernate.dao.custom.impl;
 
 import lk.ijse.hybernate.dao.custom.StudentDAO;
 import lk.ijse.hybernate.entity.Student;
-import lk.ijse.hybernate.util.FactoryConfiguration;
+import lk.ijse.hybernate.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
+import java.io.IOException;
 import java.util.List;
 
 public class StudentDAOImpl implements StudentDAO {
     @Override
-    public boolean add(Student entity) throws Exception {
-        Session session = FactoryConfiguration.getInstance().getSession();
+    public List<Student> getAll() throws IOException {
+
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
+
+        String hql = "FROM student";
+        Query query=session.createQuery(hql);
+       List<Student> students=query.list();
+
+        transaction.commit();
+        session.close();
+        return students;
+    }
+
+    @Override
+    public boolean save(Student entity) throws IOException {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction=session.beginTransaction();
 
         session.save(entity);
 
@@ -22,8 +39,8 @@ public class StudentDAOImpl implements StudentDAO {
     }
 
     @Override
-    public boolean update(Student entity) throws Exception {
-        Session session = FactoryConfiguration.getInstance().getSession();
+    public boolean update(Student entity) throws IOException {
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
 
         session.update(entity);
@@ -34,8 +51,8 @@ public class StudentDAOImpl implements StudentDAO {
     }
 
     @Override
-    public boolean delete(String s) throws Exception {
-        Session session = FactoryConfiguration.getInstance().getSession();
+    public boolean delete(String s) throws IOException {
+        Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
 
         Student student= session.load(Student.class, s);
@@ -48,12 +65,13 @@ public class StudentDAOImpl implements StudentDAO {
     }
 
     @Override
-    public Student find(String s) throws Exception {
+    public String generateNewID() {
         return null;
     }
 
     @Override
-    public List<Student> findAll() throws Exception {
+    public Student search(String id) {
         return null;
     }
+
 }
