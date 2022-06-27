@@ -3,6 +3,8 @@ package lk.ijse.hybernate.dto;
 
 import lombok.*;
 
+import java.time.LocalDate;
+
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -13,7 +15,7 @@ public class StudentDTO {
     private String studentName;
     private String address;
     private String contactNo;
-    private String dob;
+    private LocalDate dob;
     private String gender;
 
 

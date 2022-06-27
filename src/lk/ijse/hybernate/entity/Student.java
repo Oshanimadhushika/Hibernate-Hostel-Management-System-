@@ -37,7 +37,13 @@ public class Student implements SuperEntity {
     @Cascade(CascadeType.ALL)
     List<Reservation> reservations = new ArrayList<>();
 
-    public Student(String studentID, String studentName, String address, String contactNo, String dob, String gender) {
+    public Student(String studentID, String studentName, String address, String contactNo, LocalDate dob, String gender) {
+        this.student_id = studentID;
+        this.studentName = studentName;
+        this.studentAddress = address;
+        this.contac_no = contactNo;
+        this.dob = dob;
+        this.gender = gender;
     }
 
 

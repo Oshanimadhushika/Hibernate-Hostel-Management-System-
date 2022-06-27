@@ -31,7 +31,7 @@ public class StudentBOImpl implements StudentBO {
                     s.getStudentName(),
                     s.getStudentAddress(),
                     s.getContac_no(),
-                    String.valueOf(s.getDob()),
+                    s.getDob(),
                     s.getGender()));
         }
 

@@ -2,7 +2,7 @@ package lk.ijse.hybernate.dao.custom.impl;
 
 import lk.ijse.hybernate.dao.custom.StudentDAO;
 import lk.ijse.hybernate.entity.Student;
-import lk.ijse.hybernate.util.HibernateUtil;
+import lk.ijse.hybernate.util.FactoryConfiguration;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -14,7 +14,7 @@ public class StudentDAOImpl implements StudentDAO {
     @Override
     public List<Student> getAll() throws IOException {
 
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
 
         String hql = "FROM student";
@@ -28,9 +28,10 @@ public class StudentDAOImpl implements StudentDAO {
 
     @Override
     public boolean save(Student entity) throws IOException {
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction=session.beginTransaction();
 
+        System.out.println(entity.getStudent_id()+" "+entity.getStudentName()+" "+entity.getStudentAddress()+" "+entity.getContac_no()+" "+entity.getDob()+" "+entity.getGender());
         session.save(entity);
 
         transaction.commit();
@@ -40,7 +41,7 @@ public class StudentDAOImpl implements StudentDAO {
 
     @Override
     public boolean update(Student entity) throws IOException {
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
 
         session.update(entity);
@@ -52,7 +53,7 @@ public class StudentDAOImpl implements StudentDAO {
 
     @Override
     public boolean delete(String s) throws IOException {
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
 
         Student student= session.load(Student.class, s);

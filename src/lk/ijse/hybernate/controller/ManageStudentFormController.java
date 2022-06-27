@@ -2,6 +2,7 @@ package lk.ijse.hybernate.controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
@@ -18,6 +19,8 @@ import lk.ijse.hybernate.view.tdm.StudentTM;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +30,6 @@ public class ManageStudentFormController {
     public JFXTextField txtStudentName;
     public JFXTextField txtAddress;
     public JFXTextField txtConNo;
-    public JFXTextField txtDOB;
     public JFXComboBox<String> cmbGender;
     public TableView<StudentTM> tblStudent;
     public TableColumn colStudentId;
@@ -39,8 +41,10 @@ public class ManageStudentFormController {
     public JFXButton btnSave;
     public JFXButton btnDelete;
     public JFXButton btnAddNewStudent;
+    public JFXDatePicker txtDOB;
 
-    StudentBO studentBO = BOFactory.getInstance().getBO(BOTypes.STUDENT);
+    // StudentBO studentBO = BOFactory.getInstance().getBO(BOTypes.STUDENT);
+   StudentBO studentBO=new StudentBOImpl();
 
     public void initialize() throws IOException {
 
@@ -63,7 +67,7 @@ public class ManageStudentFormController {
                 txtStudentName.setText(newValue.getStudentName());
                 txtAddress.setText(newValue.getAddress());
                 txtConNo.setText(newValue.getContactNo());
-                txtDOB.setText(String.valueOf(newValue.getDob()));
+                txtDOB.setValue(newValue.getDob());
                 cmbGender.setValue(newValue.getGender());
 
                 txtStudentId.setDisable(false);
@@ -130,7 +134,8 @@ public class ManageStudentFormController {
                         s.getGender()));
             }
         } catch (Exception e) {
-            System.out.println(e);
+            e.printStackTrace();
+           // System.out.println(e);
            // new Alert(Alert.AlertType.ERROR, e.getMessage()).showAndWait();
         }
     }
@@ -139,7 +144,7 @@ public class ManageStudentFormController {
         txtStudentName.clear();
         txtAddress.clear();
         txtConNo.clear();
-        txtDOB.setText(null);
+        txtDOB.setValue(null);
         cmbGender.setValue(null);
     }
 
@@ -148,7 +153,7 @@ public class ManageStudentFormController {
         txtStudentName.clear();
         txtAddress.clear();
         txtConNo.clear();
-        txtDOB.clear();
+       // txtDOB.clear();
         txtStudentId.setDisable(true);
         txtStudentName.setDisable(true);
         txtAddress.setDisable(true);
@@ -172,7 +177,7 @@ public class ManageStudentFormController {
         txtStudentName.clear();
         txtAddress.clear();
         txtConNo.clear();
-        txtDOB.clear();
+       // txtDOB.clear();
         txtStudentName.requestFocus();
         btnSave.setDisable(false);
         btnSave.setText("Save");
@@ -181,29 +186,29 @@ public class ManageStudentFormController {
 
     public void SaveStudentOnAction(ActionEvent actionEvent) throws IOException {
 
+        /*final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MMM-dd");
+        final LocalDate dt = (LocalDate) dtf.parse(txtDOB.getText());*/
+
         String id = txtStudentId.getText();
         String name = txtStudentName.getText();
         String address = txtAddress.getText();
         String contact_no = txtConNo.getText();
-        String dob = txtDOB.getText();
-        String gender = String.valueOf(cmbGender.getValue());
+        LocalDate dob = txtDOB.getValue();
+        String gender = cmbGender.getValue();
 
 
         if (btnSave.getText().equalsIgnoreCase("Save")) {
-            try {
-                if (studentBO.saveStudent(new StudentDTO(id, name, address, contact_no, dob, gender))) {
-                    new Alert(Alert.AlertType.CONFIRMATION, "Saved.!").show();
-                    tblStudent.getItems().add(new StudentTM(id, name, address, contact_no, dob, gender));
-                    clearFields();
-                }
-            } catch (Exception e) {
-                //System.out.println("Exception 1");
-                System.out.println(e);
 
-                new Alert(Alert.AlertType.ERROR, "Something went wrong!").show();
 
+            if (studentBO.saveStudent(new StudentDTO(id, name, address, contact_no, dob, gender)))
+            {
+
+                new Alert(Alert.AlertType.CONFIRMATION, "Saved.!").show();
+                tblStudent.getItems().add(new StudentTM(id, name, address, contact_no, dob, gender));
+                clearFields();
             }
-        } else {
+
+             } else {
             try {
                 if (studentBO.updateStudent(new StudentDTO(id, name, address, contact_no, dob, gender))) {
                     new Alert(Alert.AlertType.CONFIRMATION, "Updated.!").show();
@@ -212,52 +217,12 @@ public class ManageStudentFormController {
                 }
             } catch (Exception e) {
                 // System.out.println("Exception 2");
-                System.out.println(e);
+                //System.out.println(e);
+                e.printStackTrace();
                 new Alert(Alert.AlertType.ERROR, "Something went wrong!").show();
             }
         }
     }
-        /*if(btnSave.getText().equals("Save")){
-            boolean b = studentBO.saveStudent(new StudentDTO(
-                    txtStudentId.getText(),
-                    txtStudentName.getText(),
-                    txtAddress.getText(),
-                    txtConNo.getText(),
-                    txtDOB.getText(),
-                    String.valueOf(cmbGender.getValue())
-            ));
-
-            if (b) {
-                new Alert(Alert.AlertType.CONFIRMATION, "Student Added SuccessFully").show();
-
-                tblStudent.getItems().add(new StudentTM(
-                        txtStudentId.getText(),
-                        txtStudentName.getText(),
-                        txtAddress.getText(),
-                        txtConNo.getText(),
-                        txtDOB.getText(),
-                        String.valueOf(cmbGender.getValue())
-                ));
-                clearFields();
-
-            } else {
-                new Alert(Alert.AlertType.WARNING, "Something Went Wrong !!").show();
-            }
-        }else{
-            studentBO.updateStudent(new StudentDTO(
-                    txtStudentId.getText(),
-                    txtStudentName.getText(),
-                    txtAddress.getText(),
-                    txtConNo.getText(),
-                    txtDOB.getText(),
-                    String.valueOf(cmbGender.getValue())
-            ));
-            btnSave.setText("Save");
-            txtStudentId.setEditable(true);
-            clearFields();
-            loadAllStudents();
-        }
-    }*/
 
     public void DeleteOnAction(ActionEvent actionEvent) throws IOException {
         StudentTM selectedItem = tblStudent.getSelectionModel().getSelectedItem();

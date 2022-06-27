@@ -7,20 +7,48 @@ import lk.ijse.hybernate.entity.Student;
 import lk.ijse.hybernate.entity.UserLogin;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.cfg.Environment;
-import org.hibernate.service.ServiceRegistry;
 
 import java.io.IOException;
 import java.util.Properties;
 
+public class FactoryConfiguration {
+    private static FactoryConfiguration factoryConfiguration;
+    private final SessionFactory sessionFactory;
 
-public class HibernateUtil {
-    // private static HibernateUtil factoryConfiguration;
+
+    private FactoryConfiguration() throws IOException {
+        Configuration configuration = new Configuration();
+        Properties p = new Properties();
+        p.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("hibernate.properties"));
+        configuration.setProperties(p);
+
+        configuration.addAnnotatedClass(Reservation.class);
+        configuration.addAnnotatedClass(Student.class);
+        configuration.addAnnotatedClass(Room.class);
+        configuration.addAnnotatedClass(UserLogin.class);
+
+        sessionFactory = configuration.buildSessionFactory();
+
+    }
+
+    public static FactoryConfiguration getInstance() throws IOException {
+        return (factoryConfiguration == null) ? factoryConfiguration = new FactoryConfiguration()
+                : factoryConfiguration;
+    }
+
+    public Session getSession() {
+        return sessionFactory.openSession();
+    }
+
+}
+/*
+public class FactoryConfiguration {
+    private static FactoryConfiguration hibernateUtil;
     private static SessionFactory sessionFactory;
 
-    public static SessionFactory getSessionFactory() {
+   */
+/* public static SessionFactory getSessionFactory() {
         if (sessionFactory == null) {
             try {
                 Configuration configuration = new Configuration();
@@ -52,18 +80,17 @@ public class HibernateUtil {
         }
         return sessionFactory;
     }
-}
+}*//*
 
-  /*private HibernateUtil() {
+
+  private FactoryConfiguration() throws IOException {
 
 
           Configuration configuration = new Configuration();
           Properties p = new Properties();
-      try {
+
           p.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("hibernate.properties"));
-      } catch (IOException e) {
-          e.printStackTrace();
-      }
+
       configuration.setProperties(p);
 
           configuration.addAnnotatedClass(Student.class);
@@ -75,8 +102,8 @@ public class HibernateUtil {
 
       }
 
-  public static HibernateUtil getInstance() throws IOException {
-      return (factoryConfiguration==null)? factoryConfiguration=new HibernateUtil() : factoryConfiguration;
+  public static FactoryConfiguration getInstance() throws IOException {
+      return (hibernateUtil==null)? hibernateUtil=new FactoryConfiguration() : hibernateUtil;
   }
   public Session getSession(){
       return sessionFactory.openSession();

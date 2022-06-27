@@ -2,6 +2,8 @@ package lk.ijse.hybernate.view.tdm;
 
 import lombok.*;
 
+import java.time.LocalDate;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -12,6 +14,6 @@ public class StudentTM {
     private String studentName;
     private String address;
     private String contactNo;
-    private String dob;
+    private LocalDate dob;
     private String gender;
 }
