@@ -11,5 +11,5 @@ public class RoomDTO {
     private String roomID;
     private String roomType;
     private String keyMoney;
-    private String roomQty;
+    private int roomQty;
 }

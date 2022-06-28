@@ -43,8 +43,8 @@ public class ManageStudentFormController {
     public JFXButton btnAddNewStudent;
     public JFXDatePicker txtDOB;
 
-    // StudentBO studentBO = BOFactory.getInstance().getBO(BOTypes.STUDENT);
-   StudentBO studentBO=new StudentBOImpl();
+     StudentBO studentBO = BOFactory.getInstance().getBO(BOTypes.STUDENT);
+  // StudentBO studentBO=new StudentBOImpl();
 
     public void initialize() throws IOException {
 
@@ -57,10 +57,11 @@ public class ManageStudentFormController {
         tblStudent.getColumns().get(4).setCellValueFactory(new PropertyValueFactory<>("dob"));
         tblStudent.getColumns().get(5).setCellValueFactory(new PropertyValueFactory<>("gender"));
 
-        //initUI();
+        initUI();
 
         tblStudent.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             btnSave.setText(newValue != null ? "Update" : "Save");
+            btnDelete.setDisable(false);
 
             if(newValue != null){
                 txtStudentId.setText(newValue.getStudentID());
@@ -84,41 +85,7 @@ public class ManageStudentFormController {
         loadAllStudents();
     }
 
-    /*public void getAllStudent() throws IOException {
-        ArrayList<StudentDTO> allStudent = studentBO.getAllStudent();
 
-        tblStudent.getItems().clear();
-
-        for (StudentDTO studentDTO : allStudent) {
-            tblStudent.getItems().add(new StudentTM(
-                    studentDTO.getStudentID(),
-                    studentDTO.getStudentName(),
-                    studentDTO.getAddress(),
-                    studentDTO.getContactNo(),
-                    studentDTO.getDob(),
-                    studentDTO.getGender()
-            ));
-        }
-
-    }*/
-   /* private void loadAllStudents() throws IOException {
-        tblStudent.getItems().clear();
-
-            List<StudentDTO> allStudents = studentBO.getAllStudent();
-            for(StudentDTO s : allStudents) {
-                tblStudent.getItems().add(new StudentTM(
-                        s.getStudentID(),
-                        s.getStudentName(),
-                        s.getAddress(),
-                        s.getContactNo(),
-                        s.getDob(),
-                        s.getGender()));
-            }
-
-           // System.out.println(e);
-            //new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
-
-    }*/
 
     private void loadAllStudents(){
         tblStudent.getItems().clear();
@@ -134,9 +101,9 @@ public class ManageStudentFormController {
                         s.getGender()));
             }
         } catch (Exception e) {
-            e.printStackTrace();
            // System.out.println(e);
-           // new Alert(Alert.AlertType.ERROR, e.getMessage()).showAndWait();
+            new Alert(Alert.AlertType.ERROR, e.getMessage()).showAndWait();
+            e.printStackTrace();
         }
     }
     private void clearFields(){
@@ -186,8 +153,6 @@ public class ManageStudentFormController {
 
     public void SaveStudentOnAction(ActionEvent actionEvent) throws IOException {
 
-        /*final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MMM-dd");
-        final LocalDate dt = (LocalDate) dtf.parse(txtDOB.getText());*/
 
         String id = txtStudentId.getText();
         String name = txtStudentName.getText();
@@ -206,7 +171,11 @@ public class ManageStudentFormController {
                 new Alert(Alert.AlertType.CONFIRMATION, "Saved.!").show();
                 tblStudent.getItems().add(new StudentTM(id, name, address, contact_no, dob, gender));
                 clearFields();
+            }else{
+                new Alert(Alert.AlertType.ERROR, "Something Went Wrong!").show();
+
             }
+
 
              } else {
             try {
@@ -219,7 +188,7 @@ public class ManageStudentFormController {
                 // System.out.println("Exception 2");
                 //System.out.println(e);
                 e.printStackTrace();
-                new Alert(Alert.AlertType.ERROR, "Something went wrong!").show();
+                new Alert(Alert.AlertType.ERROR, "Something Went Wrong!").show();
             }
         }
     }
@@ -231,7 +200,7 @@ public class ManageStudentFormController {
             new Alert(Alert.AlertType.CONFIRMATION, "Student Deleted SuccessFully").show();
             loadAllStudents();
         } else {
-            new Alert(Alert.AlertType.WARNING, "Something Went Wring !!").show();
+            new Alert(Alert.AlertType.WARNING, "Something Went Wrong !!").show();
 
         }
 

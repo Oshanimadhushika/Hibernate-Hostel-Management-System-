@@ -4,29 +4,183 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import lk.ijse.hybernate.bo.BOFactory;
+import lk.ijse.hybernate.bo.BOTypes;
+import lk.ijse.hybernate.bo.custom.RoomBO;
+import lk.ijse.hybernate.bo.custom.StudentBO;
+import lk.ijse.hybernate.dto.RoomDTO;
+import lk.ijse.hybernate.dto.StudentDTO;
+import lk.ijse.hybernate.view.tdm.RoomTM;
+import lk.ijse.hybernate.view.tdm.StudentTM;
+
+import java.io.IOException;
+import java.time.LocalDate;
+import java.util.List;
 
 public class ManageRoomFormController {
     public AnchorPane ManageRoomContext;
-    public JFXTextField txtRoomType;
     public JFXTextField txtKeyMoney;
     public JFXTextField txtRoomQty;
-    public TableView tblRoom;
+    public TableView<RoomTM> tblRoom;
     public TableColumn colRoomId;
     public TableColumn colRoomType;
     public TableColumn colKeymny;
     public TableColumn colRoomQty;
-    public JFXComboBox cmbRoomID;
+    public JFXComboBox<String> cmbRoomID;
     public JFXButton btnAddNewRoom;
+    public JFXButton btnSave;
+    public JFXButton btnDelete;
+    public JFXComboBox<String> cmbRoomType;
+
+    RoomBO roomBO = BOFactory.getInstance().getBO(BOTypes.ROOM);
+    // StudentBO studentBO=new StudentBOImpl();
+
+    public void initialize() throws IOException {
+
+        cmbRoomID.getItems().addAll("RM-1324","RM-5467","RM-7896","RM-0093");
+        cmbRoomType.getItems().addAll("Non-AC","Non-Ac/Food","AC","AC/Food");
+
+        tblRoom.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("roomID"));
+        tblRoom.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("roomType"));
+        tblRoom.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("keyMoney"));
+        tblRoom.getColumns().get(3).setCellValueFactory(new PropertyValueFactory<>("roomQty"));
+
+        initUI();
+
+        tblRoom.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            btnSave.setText(newValue != null ? "Update" : "Save");
+            btnDelete.setDisable(false);
+
+            if(newValue != null){
+                cmbRoomID.setValue(newValue.getRoomID());
+                cmbRoomType.setValue(newValue.getRoomType());
+                txtKeyMoney.setText(newValue.getKeyMoney());
+                txtRoomQty.setText(String.valueOf(newValue.getRoomQty()));
+
+
+                cmbRoomID.setDisable(false);
+                cmbRoomType.setDisable(false);
+                txtKeyMoney.setDisable(false);
+                txtRoomQty.setDisable(false);
+
+
+                btnSave.setDisable(false);
+            }
+        });
+
+        loadAllRooms();
+    }
+    private void loadAllRooms(){
+        tblRoom.getItems().clear();
+        try {
+            List<RoomDTO> allrooms = roomBO.getAllRooms();
+            for(RoomDTO r : allrooms) {
+                tblRoom.getItems().add(new RoomTM(
+                        r.getRoomID(),
+                        r.getRoomType(),
+                        r.getKeyMoney(),
+                        r.getRoomQty()
+                       ));
+            }
+        } catch (Exception e) {
+            // System.out.println(e);
+             new Alert(Alert.AlertType.ERROR, e.getMessage()).show();
+            e.printStackTrace();
+        }
+    }
+    private void clearFields(){
+        cmbRoomID.setValue(null);
+        cmbRoomType.setValue(null);
+        txtKeyMoney.clear();
+        txtRoomQty.clear();
+
+    }
+
+    private void initUI() {
+        cmbRoomID.setValue(null);
+        cmbRoomType.setValue(null);
+        txtKeyMoney.clear();
+        txtRoomQty.clear();
+        // txtDOB.clear();
+        cmbRoomID.setDisable(true);
+        cmbRoomType.setDisable(true);
+        txtKeyMoney.setDisable(true);
+        txtRoomQty.setDisable(true);
+        cmbRoomID.setEditable(true);
+        btnSave.setDisable(true);
+        btnDelete.setDisable(true);
+    }
+
 
     public void AddNewRoomOnAction(ActionEvent actionEvent) {
+        cmbRoomID.setDisable(false);
+        cmbRoomType.setDisable(false);
+        txtKeyMoney.setDisable(false);
+        txtRoomQty.setDisable(false);
+        cmbRoomID.setValue(null);
+        cmbRoomType.setValue(null);
+        txtKeyMoney.clear();
+        txtRoomQty.clear();
+        //cmbRoomID.setValue(generateNewId());
+        cmbRoomType.requestFocus();
+        btnSave.setDisable(false);
+        btnSave.setText("Save");
+        tblRoom.getSelectionModel().clearSelection();
     }
 
-    public void SaveRoomOnAction(ActionEvent actionEvent) {
+    public void SaveRoomOnAction(ActionEvent actionEvent) throws IOException {
+        String id =cmbRoomID.getValue();
+        String type = cmbRoomType.getValue();
+        String key_mny = txtKeyMoney.getText();
+        int qty = Integer.valueOf(txtRoomQty.getText());
+
+
+
+        if (btnSave.getText().equalsIgnoreCase("Save")) {
+
+
+            if (roomBO.saveRoom(new RoomDTO(id, type, key_mny, qty)))
+            {
+
+                new Alert(Alert.AlertType.CONFIRMATION, "Saved.!").show();
+                tblRoom.getItems().add(new RoomTM(id, type, key_mny, qty));
+                clearFields();
+            }else{
+                new Alert(Alert.AlertType.ERROR, "Something Went Wrong!").show();
+
+            }
+
+
+        } else {
+            try {
+                if (roomBO.updateRoom(new RoomDTO(id, type, key_mny, qty))) {
+                    new Alert(Alert.AlertType.CONFIRMATION, "Updated.!").show();
+                    loadAllRooms();
+                    clearFields();
+                }
+            } catch (Exception e) {
+                // System.out.println("Exception 2");
+                //System.out.println(e);
+                e.printStackTrace();
+                new Alert(Alert.AlertType.ERROR, "Something Went Wrong!").show();
+            }
+        }
     }
 
-    public void DeleteOnAction(ActionEvent actionEvent) {
+    public void DeleteOnAction(ActionEvent actionEvent) throws IOException {
+        RoomTM selectedItem = tblRoom.getSelectionModel().getSelectedItem();
+        // System.out.println(selectedItem.get);
+        if (roomBO.deleteRoom(selectedItem.getRoomID())) {
+            new Alert(Alert.AlertType.CONFIRMATION, "Student Deleted SuccessFully").show();
+            loadAllRooms();
+        } else {
+            new Alert(Alert.AlertType.WARNING, "Something Went Wrong !!").show();
+
+        }
     }
 }

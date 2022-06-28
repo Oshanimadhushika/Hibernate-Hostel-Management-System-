@@ -11,6 +11,6 @@ public class RoomTM {
     private String roomID;
     private String roomType;
     private String keyMoney;
-    private String roomQty;
+    private int roomQty;
 
 }

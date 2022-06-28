@@ -31,7 +31,6 @@ public class StudentDAOImpl implements StudentDAO {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction=session.beginTransaction();
 
-        System.out.println(entity.getStudent_id()+" "+entity.getStudentName()+" "+entity.getStudentAddress()+" "+entity.getContac_no()+" "+entity.getDob()+" "+entity.getGender());
         session.save(entity);
 
         transaction.commit();

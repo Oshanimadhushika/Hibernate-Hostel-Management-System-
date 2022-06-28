@@ -1,5 +1,6 @@
 package lk.ijse.hybernate.dao;
 
+import lk.ijse.hybernate.dao.custom.impl.RoomDAOImpl;
 import lk.ijse.hybernate.dao.custom.impl.StudentDAOImpl;
 
 public class DAOFactory {
@@ -15,6 +16,8 @@ public class DAOFactory {
         switch (type){
             case STUDENT:
                 return (T) new StudentDAOImpl();
+            case ROOM:
+                return (T) new RoomDAOImpl();
             default:
                 return null;
         }

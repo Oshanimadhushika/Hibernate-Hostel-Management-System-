@@ -1,5 +1,6 @@
 package lk.ijse.hybernate.bo;
 
+import lk.ijse.hybernate.bo.custom.impl.RoomBOImpl;
 import lk.ijse.hybernate.bo.custom.impl.StudentBOImpl;
 
 public class BOFactory {
@@ -15,6 +16,8 @@ public class BOFactory {
         switch (boType){
             case STUDENT:
                 return (T) new StudentBOImpl();
+            case ROOM:
+                return (T) new RoomBOImpl();
             default:
                 return null;
         }

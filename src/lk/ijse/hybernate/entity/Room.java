@@ -31,4 +31,11 @@ public class Room implements SuperEntity {
     @OneToMany(mappedBy = "room")
     @Cascade(CascadeType.ALL)
    List<Reservation> roomDetails=new ArrayList<>();
+
+    public Room(String roomID, String roomType, String keyMoney, int roomQty) {
+        this.room_type_id=roomID;
+        this.type=roomType;
+        this.key_money=keyMoney;
+        this.qty=roomQty;
+    }
 }
