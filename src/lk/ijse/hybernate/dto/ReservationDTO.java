@@ -1,6 +1,8 @@
 package lk.ijse.hybernate.dto;
 
 
+import lk.ijse.hybernate.entity.Room;
+import lk.ijse.hybernate.entity.Student;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -13,10 +15,10 @@ import java.time.LocalDate;
 public class ReservationDTO {
     private String res_id;
     private LocalDate date;
-    private String studentID;
-    private String roomID;
+    private Student studentID;
+    private Room roomID;
     private double key_money;
     private String status;
-    private Integer qty;
+    private int qty;
 
 }

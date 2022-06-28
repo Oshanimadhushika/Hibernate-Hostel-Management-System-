@@ -139,8 +139,16 @@ public class ManageRoomFormController {
         String key_mny = txtKeyMoney.getText();
         int qty = Integer.valueOf(txtRoomQty.getText());
 
+        if (!key_mny.matches("^[0-9]{3,5}$")) {
+            new Alert(Alert.AlertType.ERROR, "Invalid name").show();
+            txtKeyMoney.requestFocus();
+            return;
+        } else if (!txtRoomQty.getText().matches("^[0-9]{1,5}$")) {
+            new Alert(Alert.AlertType.ERROR, "Invalid qty on hand").show();
+            txtRoomQty.requestFocus();
+            return;
 
-
+        }
         if (btnSave.getText().equalsIgnoreCase("Save")) {
 
 

@@ -2,6 +2,7 @@ package lk.ijse.hybernate.dao;
 
 import java.io.IOException;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface CrudDAO <T,ID> extends SuperDAO{
@@ -13,7 +14,9 @@ public interface CrudDAO <T,ID> extends SuperDAO{
 
     boolean delete(ID id) throws IOException;
 
+    boolean find(ID id) throws SQLException, ClassNotFoundException;
+
     String generateNewID() throws IOException ;
 
-    T search(String id) throws IOException ;
+    T search(ID id)throws SQLException,ClassNotFoundException;
 }

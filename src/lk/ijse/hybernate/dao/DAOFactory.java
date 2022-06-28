@@ -1,7 +1,9 @@
 package lk.ijse.hybernate.dao;
 
+import lk.ijse.hybernate.dao.custom.impl.ResevationDAOImpl;
 import lk.ijse.hybernate.dao.custom.impl.RoomDAOImpl;
 import lk.ijse.hybernate.dao.custom.impl.StudentDAOImpl;
+import lk.ijse.hybernate.dao.custom.impl.UserDAOimpl;
 
 public class DAOFactory {
     private static DAOFactory daoFactory;
@@ -18,6 +20,10 @@ public class DAOFactory {
                 return (T) new StudentDAOImpl();
             case ROOM:
                 return (T) new RoomDAOImpl();
+            case RESERVATION:
+                return (T) new ResevationDAOImpl();
+            case USER:
+                //return (T) new UserDAOimpl();
             default:
                 return null;
         }

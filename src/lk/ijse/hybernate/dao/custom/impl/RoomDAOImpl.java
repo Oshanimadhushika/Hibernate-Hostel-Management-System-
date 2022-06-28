@@ -9,6 +9,7 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 public class RoomDAOImpl implements RoomDAO {
@@ -18,8 +19,8 @@ public class RoomDAOImpl implements RoomDAO {
         Transaction transaction = session.beginTransaction();
 
         String hql = "FROM room ";
-        Query query=session.createQuery(hql);
-        List<Room> rooms=query.list();
+        Query query = session.createQuery(hql);
+        List<Room> rooms = query.list();
 
         transaction.commit();
         session.close();
@@ -29,7 +30,7 @@ public class RoomDAOImpl implements RoomDAO {
     @Override
     public boolean save(Room entity) throws IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
-        Transaction transaction=session.beginTransaction();
+        Transaction transaction = session.beginTransaction();
 
         session.save(entity);
 
@@ -55,7 +56,7 @@ public class RoomDAOImpl implements RoomDAO {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
 
-        Student student= session.load(Student.class, s);
+        Student student = session.load(Student.class, s);
 
         session.delete(student);
 
@@ -65,12 +66,20 @@ public class RoomDAOImpl implements RoomDAO {
     }
 
     @Override
+    public boolean find(String s) throws SQLException, ClassNotFoundException {
+        return false;
+    }
+
+    @Override
     public String generateNewID() throws IOException {
         return null;
     }
 
     @Override
-    public Room search(String id) throws IOException {
+    public Room search(String s) throws SQLException, ClassNotFoundException {
         return null;
     }
+
+
 }
+

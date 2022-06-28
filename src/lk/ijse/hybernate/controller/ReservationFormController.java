@@ -4,17 +4,21 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Ellipse;
+import lk.ijse.hybernate.bo.BOFactory;
+import lk.ijse.hybernate.bo.BOTypes;
+import lk.ijse.hybernate.bo.custom.StudentBO;
+import lk.ijse.hybernate.bo.custom.impl.PurchaseReserveBOImpl;
+
+import java.io.IOException;
+import java.sql.SQLException;
+import java.time.LocalDate;
 
 public class ReservationFormController {
     public AnchorPane ReservationFormContext;
-    public JFXTextField txtreservationID;
     public JFXTextField txtStudentName;
     public JFXComboBox cmbStudentID;
     public TableView tblReservation;
@@ -37,6 +41,17 @@ public class ReservationFormController {
     public TextField txtSearch;
     public TableColumn colReservationID;
     public JFXButton btnAddToRemain;
+    public Label lblReserveID;
+   // private String reserve_id;
+
+
+    PurchaseReserveBOImpl purchaseReserveBO = BOFactory.getInstance().getBO(BOTypes.PERCHASE_RESERVE);
+
+    public void initialize(){
+
+       /* reserve_id=generateNewOrderId();
+        lblReserveID.setText(reserve_id);*/
+    }
 
     public void ReserveOnAction(ActionEvent actionEvent) {
     }
@@ -49,4 +64,17 @@ public class ReservationFormController {
 
     public void Search_On_Key_Released(KeyEvent keyEvent) {
     }
+
+    /*public String generateNewOrderId() {
+
+        try {
+            return purchaseReserveBO.generateNewOrderID();
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.ERROR, "Failed to generate a new order id").show();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            // System.out.println(e);
+        }
+        return "OID-001";
+    }*/
 }

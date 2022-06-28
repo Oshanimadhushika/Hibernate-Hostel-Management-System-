@@ -1,5 +1,7 @@
 package lk.ijse.hybernate.bo;
 
+import lk.ijse.hybernate.bo.custom.impl.PurchaseReserveBOImpl;
+import lk.ijse.hybernate.bo.custom.impl.ReservationBOImpl;
 import lk.ijse.hybernate.bo.custom.impl.RoomBOImpl;
 import lk.ijse.hybernate.bo.custom.impl.StudentBOImpl;
 
@@ -18,6 +20,10 @@ public class BOFactory {
                 return (T) new StudentBOImpl();
             case ROOM:
                 return (T) new RoomBOImpl();
+            case RESERVATION:
+                return (T) new ReservationBOImpl();
+            case PERCHASE_RESERVE:
+                return (T) new PurchaseReserveBOImpl();
             default:
                 return null;
         }

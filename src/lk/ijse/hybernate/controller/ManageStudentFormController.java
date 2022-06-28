@@ -161,7 +161,24 @@ public class ManageStudentFormController {
         LocalDate dob = txtDOB.getValue();
         String gender = cmbGender.getValue();
 
+        if (!id.matches("^(S00)[0-9]{3,5}$")) {
+            new Alert(Alert.AlertType.ERROR, "Invalid name").show();
+            txtStudentName.requestFocus();
+            return;
 
+        }else if (!name.matches("[A-Za-z ]+")) {
+            new Alert(Alert.AlertType.ERROR, "Invalid name").show();
+            txtStudentName.requestFocus();
+            return;
+        } else if (!address.matches("^[A-z0-9 ,/]{4,20}$")) {
+            new Alert(Alert.AlertType.ERROR, "Address should be at least 3 characters long").show();
+            txtAddress.requestFocus();
+            return;
+        }else if (!contact_no.matches("^07(7|6|8|1|2|5|0|4)-[0-9]{7}$")) {
+            new Alert(Alert.AlertType.ERROR, "Invalid city").show();
+            txtConNo.requestFocus();
+            return;
+        }
         if (btnSave.getText().equalsIgnoreCase("Save")) {
 
 
