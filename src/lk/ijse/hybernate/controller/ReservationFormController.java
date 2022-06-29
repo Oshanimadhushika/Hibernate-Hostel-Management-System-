@@ -57,7 +57,6 @@ public class ReservationFormController {
     public Label lblReserveID;
     String reservationId;
     int preQty;
-    // private String reserve_id;
 
     PurchaseReserveBOImpl purchaseReserveBO = BOFactory.getInstance().getBO(BOTypes.PERCHASE_RESERVE);
     RoomBO roomBO = BOFactory.getInstance().getBO(BOTypes.ROOM);
@@ -65,8 +64,7 @@ public class ReservationFormController {
 
     public void initialize() {
 
-
-
+        RF();
 
         tblReservation.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("reserveID"));
         tblReservation.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("roomID"));
@@ -78,16 +76,24 @@ public class ReservationFormController {
         lastCol.setCellValueFactory(param -> {
             Button btnDelete = new Button("Delete");
             btnDelete.setOnAction(event -> {
-
-
-
-
                 if(tblReservation.getSelectionModel().getSelectedItem()!=null){
                     try {
                         if(purchaseReserveBO.deleteReservation(reservationId)){
-                            new Alert(Alert.AlertType.CONFIRMATION,"Deleted.....").show(); ;
+                            new Alert(Alert.AlertType.CONFIRMATION,"Deleted.....").show();
+
+                            ReservationDTO reservationDTO = purchaseReserveBO.searchReservation(reservationId);
+                            Room roomID = reservationDTO.getRoomID();
+
+                            int q=roomID.getQty()+preQty;
+                            System.out.println(q);
+
+                            RoomDTO roomDTO=new RoomDTO(roomID.getRoom_type_id(),roomID.getType(),roomID.getKey_money(),q);
+
+                            roomBO.updateRoom(roomDTO);
+
                             tblReservation.getItems().remove(param.getValue());
                             tblReservation.getSelectionModel().clearSelection();
+                            clearFields();
 
                         }else {
 
@@ -110,34 +116,36 @@ public class ReservationFormController {
 
 
 
-//
-//                boolean b = false;
-//                try {
-//                    b = purchaseReserveBO.deleteReservation(selectItem.getReserveID());
-//                } catch (SQLException throwables) {
-//                    throwables.printStackTrace();
-//                } catch (ClassNotFoundException e) {
-//                    e.printStackTrace();
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
+/*
 
-//                if (b) {
-//                    new Alert(Alert.AlertType.INFORMATION, "Deleted SussesFull").show();
-//                    tblReservation.getItems().clear();
-//                   // tblOrderId.getItems().clear();
-//                    try {
-//                        initialize();
-//                    } catch (SQLException throwables) {
-//                        throwables.printStackTrace();
-//                    } catch (ClassNotFoundException e) {
-//                        e.printStackTrace();
-//                    }
-//                } else {
-//                    new Alert(Alert.AlertType.INFORMATION, "Something Went Wrong..").show();
-//                }
-//
-//
+                boolean b = false;
+                try {
+                    b = purchaseReserveBO.deleteReservation(selectItem.getReserveID());
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                if (b) {
+                    new Alert(Alert.AlertType.INFORMATION, "Deleted SussesFull").show();
+                    tblReservation.getItems().clear();
+                   // tblOrderId.getItems().clear();
+                    try {
+                        initialize();
+                    } catch (SQLException throwables) {
+                        throwables.printStackTrace();
+                    } catch (ClassNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    new Alert(Alert.AlertType.INFORMATION, "Something Went Wrong..").show();
+                }
+
+*/
+
             });
 
             return new ReadOnlyObjectWrapper<>(btnDelete);
@@ -180,21 +188,28 @@ public class ReservationFormController {
             }
         }));
 
-       /* reserve_id=generateNewOrderId();
-        lblReserveID.setText(reserve_id);*/
+
     }
 
-   /* private void clearFields(){
-        lblReserveID.clear();
+    private  void RF(){
+
+        reservationId=generateNewOrderId();
+        lblReserveID.setText(reservationId);
+
+    }
+    private void clearFields(){
+        cmbStudentID.setValue(null);
         txtStudentName.clear();
-        txtAddress.clear();
-        txtConNo.clear();
-        txtDOB.setValue(null);
-        cmbGender.setValue(null);
-    }*/
+        cmbRoomID.setValue(null);
+        txtRoomType.clear();
+        txtKeyMoney.clear();
+        txtRoomQty.clear();
+        txtStatus.clear();
+        txtStudentQty.clear();
+    }
 
     public void ReserveOnAction(ActionEvent actionEvent) throws Exception {
-        String res_id = "R-001";
+        String res_id = lblReserveID.getText();
         LocalDate date = DashBoardFormController.date;
         StudentDTO studentDTO = purchaseReserveBO.searchStudent((String) cmbStudentID.getValue());
         Student student = new Student(studentDTO.getStudentID(), studentDTO.getStudentName(), studentDTO.getAddress(), studentDTO.getContactNo(), studentDTO.getDob(), studentDTO.getGender());
@@ -209,15 +224,18 @@ public class ReservationFormController {
         if(purchaseReserveBO.purchaseReserveSave(reservationDTO)){
             updateRoomQty((String) cmbRoomID.getValue());
             loadAllReservation();
+            RF();
             new Alert(Alert.AlertType.CONFIRMATION,"Saved.......").show();
         }else {
             new Alert(Alert.AlertType.ERROR,"Try Again.......").show();
         }
 
+
+
     }
 
     public void updateOnAction(ActionEvent actionEvent) throws Exception {
-        String res_id = "R-001";
+        String res_id = lblReserveID.getText();
         LocalDate date = DashBoardFormController.date;
         StudentDTO studentDTO = purchaseReserveBO.searchStudent((String) cmbStudentID.getValue());
         Student student = new Student(studentDTO.getStudentID(), studentDTO.getStudentName(), studentDTO.getAddress(), studentDTO.getContactNo(), studentDTO.getDob(), studentDTO.getGender());
@@ -324,20 +342,17 @@ public class ReservationFormController {
 
 
 
-
-
-
-    /*public String generateNewOrderId() {
+    public String generateNewOrderId() {
 
         try {
             return purchaseReserveBO.generateNewOrderID();
-        } catch (SQLException e) {
-            new Alert(Alert.AlertType.ERROR, "Failed to generate a new order id").show();
-        } catch (ClassNotFoundException e) {
+        } catch (IOException e) {
             e.printStackTrace();
-            // System.out.println(e);
         }
-        return "OID-001";
-    }*/
+
+        new Alert(Alert.AlertType.ERROR, "Failed to generate a new order id").show();
+
+        return "R001";
+    }
 
 }

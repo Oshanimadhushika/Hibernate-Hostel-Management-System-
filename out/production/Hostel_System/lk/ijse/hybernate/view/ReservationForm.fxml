@@ -51,7 +51,7 @@
             <TableColumn fx:id="colReservationID" prefWidth="112.0" text="Reservation ID" />
             <TableColumn fx:id="colRoomId" prefWidth="111.0" style="fx-border-colour: red;" text="Room ID" />
             <TableColumn fx:id="colRoomType" prefWidth="146.0" text="Room Type" />
-            <TableColumn fx:id="colStudentQty" prefWidth="135.0" text="Student Qty" />
+            <TableColumn fx:id="colStudentQty" prefWidth="135.0" text="QTY" />
             <TableColumn fx:id="colKeyMny" prefWidth="151.0" text="Key Money" />
             <TableColumn fx:id="colStatus" prefWidth="156.0" text="Status" />
             <TableColumn fx:id="colDelete" prefWidth="129.0" text="Delete" />
@@ -85,7 +85,7 @@
          </font>
       </Text>
       <JFXTextField fx:id="txtKeyMoney" layoutX="801.0" layoutY="210.0" prefHeight="25.0" prefWidth="161.0" unFocusColor="BLACK" />
-      <Text layoutX="29.0" layoutY="269.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Room Qty:" wrappingWidth="128.501953125">
+      <Text layoutX="29.0" layoutY="269.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Qty of Room:" wrappingWidth="128.501953125">
          <font>
             <Font size="18.0" />
          </font>
@@ -93,13 +93,13 @@
       <JFXTextField fx:id="txtRoomQty" layoutX="169.0" layoutY="249.0" prefHeight="25.0" prefWidth="200.0" unFocusColor="BLACK" />
       <Line endX="859.0" layoutX="117.0" layoutY="110.0" startX="-100.0" stroke="WHITE" />
       <TextField fx:id="txtStatus" layoutX="29.0" layoutY="306.0" prefHeight="25.0" prefWidth="208.0" promptText="Status" />
-      <TextField fx:id="txtStudentQty" layoutX="253.0" layoutY="306.0" prefHeight="25.0" prefWidth="208.0" promptText="Student Qty" />
+      <TextField fx:id="txtStudentQty" layoutX="253.0" layoutY="306.0" prefHeight="25.0" prefWidth="208.0" promptText=" Qty" />
       <Label layoutX="553.0" layoutY="2.0" prefHeight="24.0" prefWidth="169.0" text="Room Availability">
          <font>
             <Font name="Microsoft JhengHei UI Bold" size="18.0" />
          </font>
       </Label>
-      <Line endX="-127.0" endY="33.0" layoutX="382.0" layoutY="60.0" startX="-127.0" startY="-45.0" stroke="#f5cd2e" />
+      <Line endX="-127.0" endY="33.0" layoutX="382.0" layoutY="60.0" startX="-127.0" startY="-45.0" />
       <Text layoutX="319.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="RM-1324">
          <font>
             <Font name="Impact" size="15.0" />
@@ -174,9 +174,9 @@
             <Image url="@../assert/icons8-search-24.png" />
          </image>
       </ImageView>
-      <Label fx:id="lblReserveID" layoutX="176.0" layoutY="122.0" prefHeight="24.0" prefWidth="182.0">
+      <Label fx:id="lblReserveID" alignment="CENTER" layoutX="176.0" layoutY="122.0" prefHeight="24.0" prefWidth="182.0" text="RID">
          <font>
-            <Font name="System Bold" size="13.0" />
+            <Font name="System Bold" size="15.0" />
          </font>
       </Label>
    </children>

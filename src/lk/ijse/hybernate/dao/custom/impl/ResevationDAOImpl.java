@@ -72,8 +72,39 @@ public class ResevationDAOImpl implements ReservationDAO {
     }
 
     @Override
-    public String generateNewID() throws IOException {
-        return null;
+    public String generateNewID() throws IOException  {
+        Session session = FactoryConfiguration.getInstance().getSession();
+
+        Query query = session.createQuery("SELECT res_id FROM Reservation ORDER BY res_id DESC").setMaxResults(1);
+        List list = query.list();
+        session.close();
+
+        String newUserId = "";
+
+        String lastUserId = list.toString();
+        String[] split = lastUserId.split("[A-z]");
+        if(split.length==0){
+            return "R001";
+        }else{
+            Integer integer = Integer.valueOf(split[2]);
+            ++integer;
+
+            if(!list.isEmpty()){
+                if (integer>=100) {
+                    newUserId = "R" + String.valueOf(integer) ;
+                }else if(integer>=10){
+                    newUserId = "R0" + String.valueOf(integer);
+                }else{
+                    newUserId = "R00" + String.valueOf(integer);
+                }
+                return newUserId;
+
+            }else{
+                return "R001";
+        }
+
+        }
+
     }
 
     @Override
@@ -89,6 +120,7 @@ public class ResevationDAOImpl implements ReservationDAO {
         session.close();
         return reservation;
     }
+
 
 
 }
