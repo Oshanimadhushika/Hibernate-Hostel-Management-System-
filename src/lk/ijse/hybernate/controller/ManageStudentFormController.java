@@ -161,8 +161,8 @@ public class ManageStudentFormController {
         LocalDate dob = txtDOB.getValue();
         String gender = cmbGender.getValue();
 
-        if (!id.matches("^(S00)[0-9]{3,5}$")) {
-            new Alert(Alert.AlertType.ERROR, "Invalid name").show();
+        if (!id.matches("^(S00)[0-9]{1,5}$")) {
+            new Alert(Alert.AlertType.ERROR, "Invalid ID").show();
             txtStudentId.requestFocus();
             return;
 
@@ -215,6 +215,7 @@ public class ManageStudentFormController {
        // System.out.println(selectedItem.get);
         if (studentBO.deleteStudent(selectedItem.getStudentID())) {
             new Alert(Alert.AlertType.CONFIRMATION, "Student Deleted SuccessFully").show();
+            initUI();
             loadAllStudents();
         } else {
             new Alert(Alert.AlertType.WARNING, "Something Went Wrong !!").show();

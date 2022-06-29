@@ -67,9 +67,9 @@ public class LoginDetailFormController {
             }
         });
 
-        loadAllStudents();
+        loadAllUsers();
     }
-    private void loadAllStudents(){
+    private void loadAllUsers(){
         tblLogInDetail.getItems().clear();
         try {
             List<UserLoginDTO> userLoginDTOS = userBO.getAllUser();
@@ -146,6 +146,7 @@ public class LoginDetailFormController {
 
                     new Alert(Alert.AlertType.CONFIRMATION, "Saved.!").show();
                     tblLogInDetail.getItems().add(new UserTM(id, name, password));
+                    loadAllUsers();
                     clearFields();
                 }else{
                     new Alert(Alert.AlertType.ERROR, "Something Went Wrong!").show();
@@ -157,7 +158,7 @@ public class LoginDetailFormController {
                 try {
                     if (userBO.updateUser(new UserLoginDTO(id, name, password))){
                         new Alert(Alert.AlertType.CONFIRMATION, "Updated.!").show();
-                        loadAllStudents();
+                        loadAllUsers();
                         clearFields();
                     }
                 } catch (Exception e) {

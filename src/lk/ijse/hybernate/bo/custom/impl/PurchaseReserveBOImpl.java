@@ -73,6 +73,13 @@ public class PurchaseReserveBOImpl implements PurchaseReserveBO {
     }
 
     @Override
+    public ReservationDTO searchReservation(String id) throws SQLException, ClassNotFoundException, IOException {
+        Reservation reservation=reservationDAO.search(id);
+
+        return new ReservationDTO(reservation.getRes_id(), reservation.getDate(),reservation.getStudent(), reservation.getRoom(), reservation.getKey_money(), reservation.getStatus(), reservation.getQty());
+    }
+
+    @Override
     public boolean checkRoomIsAvailable(String id) throws SQLException, ClassNotFoundException, IOException {
         return roomDAO.find(id);
     }

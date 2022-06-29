@@ -20,6 +20,8 @@ public interface PurchaseReserveBO extends SuperBO {
 
     StudentDTO searchStudent(String id) throws SQLException, ClassNotFoundException, IOException;
 
+    ReservationDTO searchReservation(String id) throws SQLException, ClassNotFoundException, IOException;
+
     boolean checkRoomIsAvailable(String id) throws SQLException, ClassNotFoundException, IOException;
 
     boolean checkStudentIsAvailable(String id) throws SQLException, ClassNotFoundException, IOException;

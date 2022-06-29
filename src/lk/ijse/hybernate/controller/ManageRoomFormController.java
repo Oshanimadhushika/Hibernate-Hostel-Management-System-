@@ -142,11 +142,11 @@ public class ManageRoomFormController {
 
 
         if (!key_mny.matches("^[0-9]{3,5}$")) {
-            new Alert(Alert.AlertType.ERROR, "Invalid name").show();
+            new Alert(Alert.AlertType.ERROR, "Invalid Key_Money").show();
             txtKeyMoney.requestFocus();
             return;
         } else if (!txtRoomQty.getText().matches("^[0-9]{1,5}$")) {
-            new Alert(Alert.AlertType.ERROR, "Invalid qty on hand").show();
+            new Alert(Alert.AlertType.ERROR, "Invalid qty ").show();
             txtRoomQty.requestFocus();
             return;
 
@@ -183,7 +183,7 @@ public class ManageRoomFormController {
     }
 
     public void DeleteOnAction(ActionEvent actionEvent) throws IOException {
-        RoomTM selectedItem = tblRoom.getSelectionModel().getSelectedItem();
+        /*RoomTM selectedItem = tblRoom.getSelectionModel().getSelectedItem();
         // System.out.println(selectedItem.get);
         if (roomBO.deleteRoom(selectedItem.getRoomID())) {
             new Alert(Alert.AlertType.CONFIRMATION, "Student Deleted SuccessFully").show();
@@ -191,6 +191,20 @@ public class ManageRoomFormController {
         } else {
             new Alert(Alert.AlertType.WARNING, "Something Went Wrong !!").show();
 
+        }*/
+
+        String id=tblRoom.getSelectionModel().getSelectedItem().getRoomID();
+        try {
+            roomBO.deleteRoom(id);
+            tblRoom.getItems().remove(tblRoom.getSelectionModel().getSelectedItem());
+            new Alert(Alert.AlertType.CONFIRMATION,"Deleted..!").show();
+
+            tblRoom.getSelectionModel().clearSelection();
+            clearFields();
+        } catch (Exception e){
+            new Alert(Alert.AlertType.ERROR,"Something Happened.Try again Carefully..!").show();
         }
+
+
     }
 }

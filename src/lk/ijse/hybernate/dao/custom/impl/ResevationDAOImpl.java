@@ -42,7 +42,14 @@ public class ResevationDAOImpl implements ReservationDAO {
 
     @Override
     public boolean update(Reservation entity) throws IOException {
-        return false;
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        session.update(entity);
+
+        transaction.commit();
+        session.close();
+        return true;
     }
 
     @Override
@@ -70,8 +77,17 @@ public class ResevationDAOImpl implements ReservationDAO {
     }
 
     @Override
-    public Reservation search(String s) throws SQLException, ClassNotFoundException {
-        return null;
+    public Reservation search(String s) throws SQLException, ClassNotFoundException, IOException {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        Reservation reservation= session.get(Reservation.class,s);
+
+
+
+        transaction.commit();
+        session.close();
+        return reservation;
     }
 
 

@@ -56,6 +56,7 @@ public class ReservationFormController {
     public JFXButton btnAddToRemain;
     public Label lblReserveID;
     String reservationId;
+    int preQty;
     // private String reserve_id;
 
     PurchaseReserveBOImpl purchaseReserveBO = BOFactory.getInstance().getBO(BOTypes.PERCHASE_RESERVE);
@@ -87,6 +88,7 @@ public class ReservationFormController {
                             new Alert(Alert.AlertType.CONFIRMATION,"Deleted.....").show(); ;
                             tblReservation.getItems().remove(param.getValue());
                             tblReservation.getSelectionModel().clearSelection();
+
                         }else {
 
                             new Alert(Alert.AlertType.ERROR,"Try Again.....").show(); ;
@@ -182,6 +184,15 @@ public class ReservationFormController {
         lblReserveID.setText(reserve_id);*/
     }
 
+   /* private void clearFields(){
+        lblReserveID.clear();
+        txtStudentName.clear();
+        txtAddress.clear();
+        txtConNo.clear();
+        txtDOB.setValue(null);
+        cmbGender.setValue(null);
+    }*/
+
     public void ReserveOnAction(ActionEvent actionEvent) throws Exception {
         String res_id = "R-001";
         LocalDate date = DashBoardFormController.date;
@@ -205,7 +216,37 @@ public class ReservationFormController {
 
     }
 
-    public void updateOnAction(ActionEvent actionEvent) {
+    public void updateOnAction(ActionEvent actionEvent) throws Exception {
+        String res_id = "R-001";
+        LocalDate date = DashBoardFormController.date;
+        StudentDTO studentDTO = purchaseReserveBO.searchStudent((String) cmbStudentID.getValue());
+        Student student = new Student(studentDTO.getStudentID(), studentDTO.getStudentName(), studentDTO.getAddress(), studentDTO.getContactNo(), studentDTO.getDob(), studentDTO.getGender());
+        RoomDTO roomDTO = purchaseReserveBO.searchRooms((String) cmbRoomID.getValue());
+        Room room = new Room(roomDTO.getRoomID(), roomDTO.getRoomType(), roomDTO.getKeyMoney(), roomDTO.getRoomQty());
+        double key_money = Double.parseDouble(txtKeyMoney.getText());
+        String status = txtStatus.getText();
+        int qty = Integer.parseInt(txtStudentQty.getText());
+
+
+        ReservationDTO reservationDTO = new ReservationDTO(res_id, date, student, room, key_money, status, qty);
+
+        if(purchaseReserveBO.UpdateReservation(reservationDTO)){
+            loadAllReservation();
+
+
+            int b=preQty-Integer.parseInt(txtStudentQty.getText());
+
+
+
+            RoomDTO roomDTO1=new RoomDTO(room.getRoom_type_id(),room.getType(),room.getKey_money(),b);
+
+            roomBO.updateRoom(roomDTO1);
+
+
+            new Alert(Alert.AlertType.CONFIRMATION,"Updated.......").show();
+        }else {
+            new Alert(Alert.AlertType.ERROR,"Try Again.......").show();
+        }
     }
 
     public void AddToRemainOnAction(ActionEvent actionEvent) {
@@ -255,6 +296,21 @@ public class ReservationFormController {
         if (tblReservation.getSelectionModel().getSelectedItem() != null) {
             ReservationTM selectedItem = tblReservation.getSelectionModel().getSelectedItem();
             reservationId = selectedItem.getReserveID();
+
+            ReservationDTO reservationDTO = purchaseReserveBO.searchReservation(reservationId);
+            Student student = reservationDTO.getStudentID();
+            Room roomID = reservationDTO.getRoomID();
+            preQty=roomID.getQty()+selectedItem.getStudentQty();
+            cmbStudentID.setValue(student.getStudent_id());
+            txtStudentName.setText(student.getStudentName());
+
+            cmbRoomID.setValue(selectedItem.getRoomID());
+            txtRoomType.setText(selectedItem.getRoomType());
+            txtKeyMoney.setText(String.valueOf(selectedItem.getKeyMoney()));
+            txtRoomQty.setText(String.valueOf(roomID.getQty()));
+
+            txtStatus.setText(selectedItem.getStatus());
+            txtStudentQty.setText(String.valueOf(selectedItem.getStudentQty()));
         }
     }
 
@@ -265,6 +321,8 @@ public class ReservationFormController {
         roomDTO.setRoomQty(newqty);
         roomBO.updateRoom(roomDTO);
     }
+
+
 
 
 
