@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 
 public class DashBoardFormController {
@@ -25,6 +26,7 @@ public class DashBoardFormController {
     public Label lblDate;
     public Label lblTime;
     public JFXButton btnLogOut;
+    static LocalDate date;
 
     public void initialize() throws SQLException, ClassNotFoundException {
         loadDateAndTime();
@@ -56,6 +58,7 @@ public class DashBoardFormController {
     private void loadDateAndTime() {
         /* set Date*/
         lblDate.setText(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+        date= LocalDate.parse(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
         /* set Date*/
         Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, e -> {
             DateFormat dateFormat = new SimpleDateFormat("hh : mm : ss aa");

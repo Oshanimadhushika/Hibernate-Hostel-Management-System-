@@ -127,7 +127,7 @@ public class ManageRoomFormController {
         txtKeyMoney.clear();
         txtRoomQty.clear();
         //cmbRoomID.setValue(generateNewId());
-        cmbRoomType.requestFocus();
+        cmbRoomID.requestFocus();
         btnSave.setDisable(false);
         btnSave.setText("Save");
         tblRoom.getSelectionModel().clearSelection();
@@ -138,6 +138,8 @@ public class ManageRoomFormController {
         String type = cmbRoomType.getValue();
         String key_mny = txtKeyMoney.getText();
         int qty = Integer.valueOf(txtRoomQty.getText());
+
+
 
         if (!key_mny.matches("^[0-9]{3,5}$")) {
             new Alert(Alert.AlertType.ERROR, "Invalid name").show();

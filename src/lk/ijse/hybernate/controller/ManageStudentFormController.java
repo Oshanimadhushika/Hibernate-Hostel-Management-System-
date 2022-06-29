@@ -145,7 +145,7 @@ public class ManageStudentFormController {
         txtAddress.clear();
         txtConNo.clear();
        // txtDOB.clear();
-        txtStudentName.requestFocus();
+        txtStudentId.requestFocus();
         btnSave.setDisable(false);
         btnSave.setText("Save");
         tblStudent.getSelectionModel().clearSelection();
@@ -163,7 +163,7 @@ public class ManageStudentFormController {
 
         if (!id.matches("^(S00)[0-9]{3,5}$")) {
             new Alert(Alert.AlertType.ERROR, "Invalid name").show();
-            txtStudentName.requestFocus();
+            txtStudentId.requestFocus();
             return;
 
         }else if (!name.matches("[A-Za-z ]+")) {

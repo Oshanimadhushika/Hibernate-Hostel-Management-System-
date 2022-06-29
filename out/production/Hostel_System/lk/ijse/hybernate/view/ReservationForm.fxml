@@ -46,7 +46,7 @@
          </font>
       </Text>
       <JFXComboBox fx:id="cmbStudentID" layoutX="169.0" layoutY="161.0" prefHeight="25.0" prefWidth="200.0" unFocusColor="BLACK" />
-      <TableView fx:id="tblReservation" layoutX="18.0" layoutY="347.0" prefHeight="176.0" prefWidth="943.0" style="-fx-background-color: grey; -fx-border-color: black;">
+      <TableView fx:id="tblReservation" layoutX="18.0" layoutY="347.0" onMouseClicked="#reservationTableClicked" prefHeight="176.0" prefWidth="943.0" style="-fx-background-color: grey; -fx-border-color: black;">
          <columns>
             <TableColumn fx:id="colReservationID" prefWidth="112.0" text="Reservation ID" />
             <TableColumn fx:id="colRoomId" prefWidth="111.0" style="fx-border-colour: red;" text="Room ID" />

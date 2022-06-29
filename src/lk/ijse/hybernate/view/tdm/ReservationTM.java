@@ -1,6 +1,7 @@
 package lk.ijse.hybernate.view.tdm;
 
 import javafx.scene.control.Button;
+import lk.ijse.hybernate.entity.Room;
 import lombok.*;
 
 @Data
@@ -8,14 +9,15 @@ import lombok.*;
 @AllArgsConstructor
 @Getter
 @Setter
+@ToString
 public class ReservationTM {
     private String reserveID;
     private String roomID;
     private String roomType;
-    private String studentQty;
-    private String keyMoney;
+    private int studentQty;
+    private double keyMoney;
     private String status;
-    private Button delete;
+
 
 
 }

@@ -10,19 +10,30 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface PurchaseReserveBO extends SuperBO {
-    boolean purchaseReserve(ReservationDTO dto) throws SQLException, ClassNotFoundException, IOException;
+    boolean purchaseReserveSave(ReservationDTO dto) throws SQLException, ClassNotFoundException, IOException;
 
-    RoomDTO searchRooms(String id) throws SQLException, ClassNotFoundException;
+    boolean UpdateReservation(ReservationDTO dto) throws SQLException, ClassNotFoundException, IOException;
 
-    StudentDTO searchStudent(String id) throws SQLException, ClassNotFoundException;
+    boolean deleteReservation(String  id) throws SQLException, ClassNotFoundException, IOException;
 
-    boolean checkRoomIsAvailable(String id) throws SQLException, ClassNotFoundException;
+    RoomDTO searchRooms(String id) throws SQLException, ClassNotFoundException, IOException;
 
-    boolean checkStudentIsAvailable(String id) throws SQLException, ClassNotFoundException;
+    StudentDTO searchStudent(String id) throws SQLException, ClassNotFoundException, IOException;
+
+    boolean checkRoomIsAvailable(String id) throws SQLException, ClassNotFoundException, IOException;
+
+    boolean checkStudentIsAvailable(String id) throws SQLException, ClassNotFoundException, IOException;
 
     String generateNewOrderID() throws SQLException, ClassNotFoundException, IOException;
 
     List<StudentDTO> getAllStudents() throws Exception;
 
     List<RoomDTO> getAllRooms() throws Exception;
+
+    List<ReservationDTO> getAllReservation() throws Exception;
+
+
+    List getStudentIds() throws IOException;
+
+    List getRoomIds() throws IOException;
 }

@@ -66,8 +66,8 @@ public class StudentDAOImpl implements StudentDAO {
     }
 
     @Override
-    public boolean find(String s) throws SQLException, ClassNotFoundException {
-        return false;
+    public boolean find(String s) throws SQLException, ClassNotFoundException, IOException {
+       return false;
     }
 
     @Override
@@ -76,9 +76,28 @@ public class StudentDAOImpl implements StudentDAO {
     }
 
     @Override
-    public Student search(String s) throws SQLException, ClassNotFoundException {
-        return null;
+    public Student search(String s) throws SQLException, ClassNotFoundException, IOException {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        Student student= session.get(Student.class,s);
+
+
+
+        transaction.commit();
+        session.close();
+        return student;
     }
 
 
+    @Override
+    public List getStudentIds() throws IOException {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        Query query=session.createQuery("select student_id FROM student");
+        List studentIds=query.list();
+        transaction.commit();
+        session.close();
+        return studentIds;
+    }
 }

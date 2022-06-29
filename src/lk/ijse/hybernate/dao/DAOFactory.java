@@ -23,7 +23,7 @@ public class DAOFactory {
             case RESERVATION:
                 return (T) new ResevationDAOImpl();
             case USER:
-                //return (T) new UserDAOimpl();
+                return (T) new UserDAOimpl();
             default:
                 return null;
         }

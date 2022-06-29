@@ -87,7 +87,7 @@
             <Font name="Impact" size="18.0" />
          </font>
       </JFXButton>
-      <TableView fx:id="tblStudent" layoutX="31.0" layoutY="342.0" prefHeight="181.0" prefWidth="885.0" style="-fx-background-color: grey; -fx-border-color: red;">
+      <TableView fx:id="tblStudent" layoutX="31.0" layoutY="342.0" prefHeight="181.0" prefWidth="885.0" style="-fx-background-color: grey; -fx-border-color: black;">
         <columns>
           <TableColumn fx:id="colStudentId" prefWidth="111.0" style="fx-border-colour: red;" text="Student ID" />
           <TableColumn fx:id="colName" prefWidth="129.0" text="Name" />
