@@ -44,19 +44,10 @@ public class RemainKeyMoneyFormController {
         loadRemainKeyMoneyStudent();
     }
     private void loadRemainKeyMoneyStudent() throws SQLException, IOException, ClassNotFoundException {
-        //List<RemainKeyMnyDTO>  remainKeyMny=reservationBO.getRemainKeyMnyStudent();
+
         ObservableList<RemainKeyMnyTM> remainKeyMnyStudent = reservationBO.getRemainKeyMnyStudent();
         tblRemainKeyMoney.setItems(remainKeyMnyStudent);
-        /*for (RemainKeyMnyDTO r : remainKeyMny) {
-            String ID = r.getStudentID();
-            String name= r.getStudentName();
-            String status = r.getStatus();
 
-
-
-            RemainKeyMnyTM remainKeyMnyTM = new RemainKeyMnyTM(ID,name,status);
-            observableList.add(remainKeyMnyTM);
-            tblRemainKeyMoney.setItems(observableList);*/
         }
 
     }

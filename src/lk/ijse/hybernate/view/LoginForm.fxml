@@ -3,23 +3,27 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="LoginFormContext" prefHeight="435.0" prefWidth="689.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.hybernate.controller.LoginFormController">
    <children>
-      <JFXTextField fx:id="txtUserName" focusColor="#fdfdff" layoutX="163.0" layoutY="135.0" prefHeight="43.0" prefWidth="240.0" promptText="User Name" unFocusColor="#fffafa">
+      <JFXTextField fx:id="txtPasswordHidden" layoutX="163.0" layoutY="218.0" prefHeight="43.0" prefWidth="240.0" unFocusColor="WHITE">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </JFXTextField>
+      <JFXTextField fx:id="txtUserName" focusColor="#fdfdff" layoutX="163.0" layoutY="135.0" prefHeight="43.0" prefWidth="240.0" promptText="User ID" unFocusColor="#fffafa">
          <font>
             <Font name="Corbel Italic" size="20.0" />
          </font>
       </JFXTextField>
-      <JFXPasswordField fx:id="txtPassword" layoutX="163.0" layoutY="218.0" prefHeight="43.0" prefWidth="240.0" promptText="Password" unFocusColor="#fcf9f9">
+      <JFXPasswordField fx:id="txtPassword" layoutX="163.0" layoutY="223.0" prefHeight="31.0" prefWidth="240.0" promptText="Password" unFocusColor="#fcf9f9">
          <font>
-            <Font name="Corbel Light Italic" size="22.0" />
+            <Font name="Corbel Light Italic" size="20.0" />
          </font>
       </JFXPasswordField>
       <JFXButton fx:id="btnlogIn" layoutX="447.0" layoutY="311.0" onAction="#LogInOnAction" prefHeight="52.0" prefWidth="139.0" style="-fx-border-color: yellow;" text="LOG IN" textFill="#eeb90a">
@@ -33,9 +37,6 @@
          </font>
       </Label>
       <Line endX="524.0" layoutX="137.0" layoutY="90.0" startX="-101.0" stroke="#e4d9db" />
-      <ImageView fitHeight="28.0" fitWidth="26.0" layoutX="377.0" layoutY="233.0" onMouseClicked="#Eye_On_Mouse_Click" pickOnBounds="true">
-         <image>
-            <Image url="@../assert/view.png" />
-         </image></ImageView>
+      <CheckBox fx:id="CheckBoxPassword" layoutX="163.0" layoutY="274.0" mnemonicParsing="false" onMouseClicked="#changeVisibility" text="Show Password" textFill="#b5b462" />
    </children>
 </AnchorPane>

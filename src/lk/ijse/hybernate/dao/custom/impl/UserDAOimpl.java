@@ -67,7 +67,12 @@ public class UserDAOimpl implements UserDAO {
     }
 
     @Override
-    public UserLogin search(String s) throws SQLException, ClassNotFoundException {
-        return null;
+    public UserLogin search(String s) throws IOException {
+        Session session = FactoryConfiguration.getInstance().getSession();
+
+        UserLogin user = session.find(UserLogin.class, s);
+
+        session.close();
+        return user;
     }
 }

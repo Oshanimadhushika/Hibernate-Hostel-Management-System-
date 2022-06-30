@@ -11,6 +11,7 @@ import lk.ijse.hybernate.entity.Student;
 import lk.ijse.hybernate.entity.UserLogin;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,5 +60,10 @@ public class UserBOImpl implements UserBO {
     @Override
     public boolean deleteUser(String id) throws IOException {
         return userDAO.delete(id);
+    }
+
+    @Override
+    public UserLogin searchUser(String id) throws SQLException, IOException, ClassNotFoundException {
+        return userDAO.search(id);
     }
 }
