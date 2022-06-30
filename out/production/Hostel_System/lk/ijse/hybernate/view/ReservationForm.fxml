@@ -15,7 +15,7 @@
 
 <AnchorPane fx:id="ReservationFormContext" prefHeight="537.0" prefWidth="985.0" style="-fx-background-color: #ccae62;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.hybernate.controller.ReservationFormController">
    <children>
-      <Ellipse fill="#95a5a6c7" layoutX="345.0" layoutY="58.0" radiusX="61.0" radiusY="43.0" stroke="#d9d018" strokeType="INSIDE" />
+      <Ellipse fill="#95a5a6c7" layoutX="630.0" layoutY="53.0" radiusX="112.0" radiusY="49.0" stroke="#d9d018" strokeType="INSIDE" />
       <Label layoutX="15.0" layoutY="14.0" prefHeight="52.0" prefWidth="189.0" text="Reservation">
          <font>
             <Font name="Ebrima Bold" size="23.0" />
@@ -92,71 +92,23 @@
       <Line endX="859.0" layoutX="117.0" layoutY="110.0" startX="-100.0" stroke="WHITE" />
       <TextField fx:id="txtStatus" layoutX="29.0" layoutY="306.0" prefHeight="25.0" prefWidth="208.0" promptText="Status" />
       <TextField fx:id="txtStudentQty" layoutX="254.0" layoutY="305.0" prefHeight="25.0" prefWidth="208.0" promptText=" Qty" />
-      <Label layoutX="553.0" layoutY="2.0" prefHeight="24.0" prefWidth="169.0" text="Room Availability">
+      <Label layoutX="293.0" layoutY="44.0" prefHeight="29.0" prefWidth="200.0" text="Room Availability">
          <font>
-            <Font name="Microsoft JhengHei UI Bold" size="18.0" />
+            <Font name="Arial Black" size="20.0" />
          </font>
       </Label>
       <Line endX="-127.0" endY="33.0" layoutX="382.0" layoutY="60.0" startX="-127.0" startY="-45.0" />
-      <Text fx:id="lblRoomId1" layoutX="319.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="RM-1324">
+      <Text fx:id="lblRoomId" layoutX="598.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="RM-1324">
          <font>
-            <Font name="Impact" size="15.0" />
+            <Font name="Impact" size="21.0" />
          </font>
       </Text>
-      <Text layoutX="323.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Non-AC">
-         <font>
-            <Font name="Impact" size="15.0" />
-         </font>
-      </Text>
-      <Label fx:id="lblRoomQty1" alignment="CENTER" layoutX="317.0" layoutY="68.0" prefHeight="28.0" prefWidth="51.0" textFill="#751414">
+      <Text fx:id="lblRoomType" layoutX="561.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AC" textAlignment="CENTER" wrappingWidth="146.50195664912462">
          <font>
             <Font name="Impact" size="22.0" />
          </font>
-      </Label>
-      <Ellipse fill="#95a5a6c7" layoutX="474.0" layoutY="60.0" radiusX="61.0" radiusY="43.0" stroke="#d9d018" strokeType="INSIDE" />
-      <Ellipse fill="#95a5a6c7" layoutX="773.0" layoutY="57.0" radiusX="61.0" radiusY="43.0" stroke="#d9d018" strokeType="INSIDE" />
-      <Ellipse fill="#95a5a6c7" layoutX="900.0" layoutY="58.0" radiusX="61.0" radiusY="43.0" stroke="#d9d018" strokeType="INSIDE" />
-      <Text fx:id="lblRoomId2" layoutX="448.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="RM-5467">
-         <font>
-            <Font name="Impact" size="15.0" />
-         </font>
       </Text>
-      <Text layoutX="430.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Non-AC/Foood">
-         <font>
-            <Font name="Impact" size="15.0" />
-         </font>
-      </Text>
-      <Label fx:id="lblRoomQty2" alignment="CENTER" layoutX="448.0" layoutY="64.0" prefHeight="28.0" prefWidth="51.0" textFill="#751414">
-         <font>
-            <Font name="Impact" size="22.0" />
-         </font>
-      </Label>
-      <Text fx:id="lblRoomid3" layoutX="747.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="RM-7896">
-         <font>
-            <Font name="Impact" size="15.0" />
-         </font>
-      </Text>
-      <Text layoutX="765.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AC">
-         <font>
-            <Font name="Impact" size="15.0" />
-         </font>
-      </Text>
-      <Label fx:id="lblRoomQty3" alignment="CENTER" layoutX="748.0" layoutY="63.0" prefHeight="28.0" prefWidth="53.0" textFill="#751414">
-         <font>
-            <Font name="Impact" size="22.0" />
-         </font>
-      </Label>
-      <Text fx:id="lblRoomId4" layoutX="874.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="RM-0093">
-         <font>
-            <Font name="Impact" size="15.0" />
-         </font>
-      </Text>
-      <Text layoutX="878.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AC/Food">
-         <font>
-            <Font name="Impact" size="15.0" />
-         </font>
-      </Text>
-      <Label fx:id="lblRoomQty4" alignment="CENTER" layoutX="878.0" layoutY="64.0" prefHeight="28.0" prefWidth="51.0" textFill="#751414">
+      <Label fx:id="lblRoomQty" alignment="CENTER" layoutX="585.0" layoutY="57.0" prefHeight="34.0" prefWidth="99.0" textFill="#751414">
          <font>
             <Font name="Impact" size="22.0" />
          </font>
@@ -171,15 +123,5 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Text fill="#322579" layoutX="559.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Available=Yes">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Text>
-      <Text fill="#322579" layoutX="559.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Unavailable=No">
-         <font>
-            <Font name="System Bold" size="15.0" />
-         </font>
-      </Text>
    </children>
 </AnchorPane>

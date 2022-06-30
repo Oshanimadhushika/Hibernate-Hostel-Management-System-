@@ -16,7 +16,7 @@
             <Font size="19.0" />
          </font>
       </JFXTextField>
-      <JFXTextField fx:id="txtUserName" focusColor="#fdfdff" layoutX="163.0" layoutY="135.0" prefHeight="43.0" prefWidth="240.0" promptText="User Name" unFocusColor="#fffafa">
+      <JFXTextField fx:id="txtUserName" focusColor="#fdfdff" layoutX="163.0" layoutY="135.0" prefHeight="43.0" prefWidth="240.0" promptText="User ID" unFocusColor="#fffafa">
          <font>
             <Font name="Corbel Italic" size="20.0" />
          </font>

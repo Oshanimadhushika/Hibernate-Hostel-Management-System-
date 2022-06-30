@@ -54,17 +54,12 @@ public class ReservationFormController {
     public JFXTextField txtRoomQty;
     public TextField txtStatus;
     public TextField txtStudentQty;
-    public Label lblRoomQty1;
-    public Label lblRoomQty2;
-    public Label lblRoomQty3;
-    public Label lblRoomQty4;
     public TableColumn colReservationID;
     public JFXButton btnAddToRemain;
     public Label lblReserveID;
-    public Text lblRoomId1;
-    public Text lblRoomId2;
-    public Text lblRoomid3;
-    public Text lblRoomId4;
+    public Text lblRoomId;
+    public Text lblRoomType;
+    public Label lblRoomQty;
     String reservationId;
     int preQty;
     ArrayList<RoomDTO> allrooms;
@@ -91,16 +86,15 @@ public class ReservationFormController {
                     try {
                         if(purchaseReserveBO.deleteReservation(reservationId)){
                             new Alert(Alert.AlertType.CONFIRMATION,"Deleted.....").show();
+                            ////ReservationDTO reservationDTO = purchaseReserveBO.searchReservation(lblReserveID.getText());
+                           //  Room roomID = reservationDTO.getRoomID();
+                            System.out.println("qry room: "+preQty);
 
-                            ReservationDTO reservationDTO = purchaseReserveBO.searchReservation(reservationId);
-                            Room roomID = reservationDTO.getRoomID();
+                            RoomDTO roomDTO1 = purchaseReserveBO.searchRooms((String) cmbRoomID.getValue());
 
-                            int q=roomID.getQty()+preQty;
-                            System.out.println(q);
+                           roomDTO1.setRoomQty(preQty);
 
-                            RoomDTO roomDTO=new RoomDTO(roomID.getRoom_type_id(),roomID.getType(),roomID.getKey_money(),q);
-
-                            roomBO.updateRoom(roomDTO);
+                            roomBO.updateRoom(roomDTO1);
 
                             tblReservation.getItems().remove(param.getValue());
                             tblReservation.getSelectionModel().clearSelection();
@@ -158,6 +152,10 @@ public class ReservationFormController {
         cmbRoomID.getSelectionModel().selectedItemProperty().addListener(((observable, oldValue, newValue) -> {
             try {
                 RoomDTO roomDTO = purchaseReserveBO.searchRooms((String) newValue);
+                lblRoomId.setText(roomDTO.getRoomID());
+                lblRoomType.setText(roomDTO.getRoomType());
+                lblRoomQty.setText(String.valueOf(roomDTO.getRoomQty()));
+
                 txtRoomType.setText(roomDTO.getRoomType());
                 txtRoomQty.setText((String.valueOf(roomDTO.getRoomQty())));
                 txtKeyMoney.setText(roomDTO.getKeyMoney());
@@ -342,36 +340,5 @@ public class ReservationFormController {
         return "R001";
     }
 
-    /*private void loadAllLabel() throws SQLException, IOException, ClassNotFoundException {
-      String room_qty1=lblRoomQty1.getText();
-      String room_id1=lblRoomId1.getText();
 
-        String room_qty2=lblRoomQty2.getText();
-        String room_id2=lblRoomId2.getText();
-
-        String room_qty3=lblRoomQty3.getText();
-        String room_id3=lblRoomid3.getText();
-
-        String room_qty4=lblRoomQty4.getText();
-        String room_id4=lblRoomId4.getText();
-
-
-        ArrayList<SetLabel> allLabel = new ArrayList<>();
-        allLabel.add(new SetLabel(room_id1,room_qty1));
-        allLabel.add(new SetLabel(room_id2,room_qty2 ));
-        allLabel.add(new SetLabel( room_id3,room_qty3));
-        allLabel.add(new SetLabel(room_id4,room_qty4));
-
-        for (int i = 0; i < allLabel.size(); i++) {
-            if (i< allrooms.size()){
-                SetLabel.get(i).getrm_ID.setText(allrooms.get(i).getRoomID()+"  "+allrooms.get(i).getRoomType());
-                SetLabel.get(i).getAvailable().setText(allrooms.get(i).getRoomQty()==0 ? "No" : "Yes");
-            }else {
-                SetLabel.get(i).getTypeAndId().setText("No");
-                SetLabel.get(i).getRental().setText("No");
-                SetLabel.get(i).getAvailable().setText("No");
-            }
-        }
-
-    }*/
 }
