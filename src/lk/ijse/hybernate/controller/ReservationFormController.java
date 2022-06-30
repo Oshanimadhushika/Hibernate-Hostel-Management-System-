@@ -7,12 +7,17 @@ import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Ellipse;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import lk.ijse.hybernate.bo.BOFactory;
 import lk.ijse.hybernate.bo.BOTypes;
 import lk.ijse.hybernate.bo.custom.RoomBO;
@@ -22,12 +27,14 @@ import lk.ijse.hybernate.dto.RoomDTO;
 import lk.ijse.hybernate.dto.StudentDTO;
 import lk.ijse.hybernate.entity.Reservation;
 import lk.ijse.hybernate.entity.Room;
+import lk.ijse.hybernate.entity.SetLabel;
 import lk.ijse.hybernate.entity.Student;
 import lk.ijse.hybernate.view.tdm.ReservationTM;
 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ReservationFormController {
@@ -48,15 +55,19 @@ public class ReservationFormController {
     public TextField txtStatus;
     public TextField txtStudentQty;
     public Label lblRoomQty1;
-    public Ellipse lblRoomQty2;
+    public Label lblRoomQty2;
     public Label lblRoomQty3;
     public Label lblRoomQty4;
-    public TextField txtSearch;
     public TableColumn colReservationID;
     public JFXButton btnAddToRemain;
     public Label lblReserveID;
+    public Text lblRoomId1;
+    public Text lblRoomId2;
+    public Text lblRoomid3;
+    public Text lblRoomId4;
     String reservationId;
     int preQty;
+    ArrayList<RoomDTO> allrooms;
 
     PurchaseReserveBOImpl purchaseReserveBO = BOFactory.getInstance().getBO(BOTypes.PERCHASE_RESERVE);
     RoomBO roomBO = BOFactory.getInstance().getBO(BOTypes.ROOM);
@@ -116,35 +127,6 @@ public class ReservationFormController {
 
 
 
-/*
-
-                boolean b = false;
-                try {
-                    b = purchaseReserveBO.deleteReservation(selectItem.getReserveID());
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-                if (b) {
-                    new Alert(Alert.AlertType.INFORMATION, "Deleted SussesFull").show();
-                    tblReservation.getItems().clear();
-                   // tblOrderId.getItems().clear();
-                    try {
-                        initialize();
-                    } catch (SQLException throwables) {
-                        throwables.printStackTrace();
-                    } catch (ClassNotFoundException e) {
-                        e.printStackTrace();
-                    }
-                } else {
-                    new Alert(Alert.AlertType.INFORMATION, "Something Went Wrong..").show();
-                }
-
-*/
 
             });
 
@@ -267,11 +249,14 @@ public class ReservationFormController {
         }
     }
 
-    public void AddToRemainOnAction(ActionEvent actionEvent) {
+    public void AddToRemainOnAction(ActionEvent actionEvent) throws IOException {
+
+        ReservationFormContext.getChildren().clear();
+        Parent parent = FXMLLoader.load(getClass().getResource("../view/RemainKeyMoneyForm.fxml"));
+        ReservationFormContext.getChildren().add(parent);
     }
 
-    public void Search_On_Key_Released(KeyEvent keyEvent) {
-    }
+
 
 
     public void loadStudentIds() {
@@ -322,6 +307,8 @@ public class ReservationFormController {
             cmbStudentID.setValue(student.getStudent_id());
             txtStudentName.setText(student.getStudentName());
 
+            lblReserveID.setText(selectedItem.getReserveID());
+
             cmbRoomID.setValue(selectedItem.getRoomID());
             txtRoomType.setText(selectedItem.getRoomType());
             txtKeyMoney.setText(String.valueOf(selectedItem.getKeyMoney()));
@@ -355,4 +342,36 @@ public class ReservationFormController {
         return "R001";
     }
 
+    /*private void loadAllLabel() throws SQLException, IOException, ClassNotFoundException {
+      String room_qty1=lblRoomQty1.getText();
+      String room_id1=lblRoomId1.getText();
+
+        String room_qty2=lblRoomQty2.getText();
+        String room_id2=lblRoomId2.getText();
+
+        String room_qty3=lblRoomQty3.getText();
+        String room_id3=lblRoomid3.getText();
+
+        String room_qty4=lblRoomQty4.getText();
+        String room_id4=lblRoomId4.getText();
+
+
+        ArrayList<SetLabel> allLabel = new ArrayList<>();
+        allLabel.add(new SetLabel(room_id1,room_qty1));
+        allLabel.add(new SetLabel(room_id2,room_qty2 ));
+        allLabel.add(new SetLabel( room_id3,room_qty3));
+        allLabel.add(new SetLabel(room_id4,room_qty4));
+
+        for (int i = 0; i < allLabel.size(); i++) {
+            if (i< allrooms.size()){
+                SetLabel.get(i).getrm_ID.setText(allrooms.get(i).getRoomID()+"  "+allrooms.get(i).getRoomType());
+                SetLabel.get(i).getAvailable().setText(allrooms.get(i).getRoomQty()==0 ? "No" : "Yes");
+            }else {
+                SetLabel.get(i).getTypeAndId().setText("No");
+                SetLabel.get(i).getRental().setText("No");
+                SetLabel.get(i).getAvailable().setText("No");
+            }
+        }
+
+    }*/
 }

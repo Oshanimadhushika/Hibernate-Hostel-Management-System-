@@ -3,38 +3,29 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="RemainKeyMoneyFormContext" prefHeight="537.0" prefWidth="985.0" style="-fx-background-color: #222f3e;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.hybernate.controller.RemainKeyMoneyFormController">
+<AnchorPane fx:id="RemainKeyMoneyFormContext" prefHeight="537.0" prefWidth="985.0" style="-fx-background-color: #ccae62;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.hybernate.controller.RemainKeyMoneyFormController">
    <children>
-      <Label layoutX="15.0" layoutY="14.0" prefHeight="52.0" prefWidth="381.0" text="Find Remain Key-Money Student" textFill="WHITE">
+      <Label layoutX="15.0" layoutY="14.0" prefHeight="52.0" prefWidth="381.0" text="Find Remain Key-Money Student">
          <font>
             <Font name="Ebrima Bold" size="23.0" />
          </font>
       </Label>
       <Line endX="859.0" layoutX="116.0" layoutY="112.0" startX="-100.0" stroke="WHITE" />
-      <Label layoutX="14.0" layoutY="60.0" prefHeight="43.0" prefWidth="381.0" text="Search students who haven't payed key-money completely" textFill="WHITE">
+      <Label layoutX="14.0" layoutY="60.0" prefHeight="43.0" prefWidth="381.0" text="Search students who haven't payed key-money completely" textFill="#030303">
          <font>
             <Font name="Javanese Text" size="15.0" />
          </font>
       </Label>
-      <TableView fx:id="tblRemainKeyMoney" layoutX="118.0" layoutY="238.0" prefHeight="274.0" prefWidth="691.0" style="-fx-background-color: grey; -fx-border-color: red;">
+      <TableView fx:id="tblRemainKeyMoney" layoutX="118.0" layoutY="146.0" prefHeight="366.0" prefWidth="691.0" style="-fx-background-color: grey; -fx-border-color: black;">
          <columns>
             <TableColumn fx:id="colStudentId" prefWidth="191.0" style="fx-border-colour: red;" text="Srudent ID" />
             <TableColumn fx:id="colStudentName" prefWidth="255.0" text="Student  Name" />
             <TableColumn fx:id="colStatus" prefWidth="240.0" text="Status" />
          </columns>
       </TableView>
-      <TextField fx:id="txtSearch" alignment="CENTER" layoutX="118.0" layoutY="149.0" onKeyReleased="#Search_On_Key_Released" prefHeight="25.0" prefWidth="423.0" promptText="Search " />
-      <ImageView fitHeight="25.0" fitWidth="24.0" layoutX="118.0" layoutY="149.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../assert/icons8-search-24.png" />
-         </image>
-      </ImageView>
    </children>
 </AnchorPane>

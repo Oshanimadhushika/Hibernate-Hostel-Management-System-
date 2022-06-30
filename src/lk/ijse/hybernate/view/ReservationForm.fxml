@@ -7,8 +7,6 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Ellipse?>
 <?import javafx.scene.shape.Line?>
@@ -23,7 +21,7 @@
             <Font name="Ebrima Bold" size="23.0" />
          </font>
       </Label>
-      <Line endX="857.0" layoutX="119.0" layoutY="291.0" startX="-111.0" stroke="WHITE" />
+      <Line endX="857.0" layoutX="119.0" layoutY="290.0" startX="-111.0" stroke="WHITE" />
       <Label layoutX="14.0" layoutY="60.0" prefHeight="43.0" prefWidth="216.0" text="Reserve room  | Delete reserve">
          <font>
             <Font name="Javanese Text" size="15.0" />
@@ -57,12 +55,12 @@
             <TableColumn fx:id="colDelete" prefWidth="129.0" text="Delete" />
          </columns>
       </TableView>
-      <JFXButton layoutX="525.0" layoutY="301.0" onAction="#ReserveOnAction" prefHeight="27.0" prefWidth="105.0" style="-fx-background-color: #218c74;" text="Reserve" textFill="WHITE">
+      <JFXButton layoutX="479.0" layoutY="302.0" onAction="#ReserveOnAction" prefHeight="27.0" prefWidth="105.0" style="-fx-background-color: #218c74;" text="Reserve" textFill="WHITE">
          <font>
             <Font name="Impact" size="18.0" />
          </font>
       </JFXButton>
-      <JFXButton layoutX="650.0" layoutY="301.0" onAction="#updateOnAction" prefHeight="34.0" prefWidth="105.0" style="-fx-background-color: #ee5253;" text="Update" textFill="#fffbfb">
+      <JFXButton layoutX="606.0" layoutY="302.0" onAction="#updateOnAction" prefHeight="34.0" prefWidth="105.0" style="-fx-background-color: #ee5253;" text="Update" textFill="#fffbfb">
          <font>
             <Font name="Impact" size="18.0" />
          </font>
@@ -93,14 +91,14 @@
       <JFXTextField fx:id="txtRoomQty" layoutX="169.0" layoutY="249.0" prefHeight="25.0" prefWidth="200.0" unFocusColor="BLACK" />
       <Line endX="859.0" layoutX="117.0" layoutY="110.0" startX="-100.0" stroke="WHITE" />
       <TextField fx:id="txtStatus" layoutX="29.0" layoutY="306.0" prefHeight="25.0" prefWidth="208.0" promptText="Status" />
-      <TextField fx:id="txtStudentQty" layoutX="253.0" layoutY="306.0" prefHeight="25.0" prefWidth="208.0" promptText=" Qty" />
+      <TextField fx:id="txtStudentQty" layoutX="254.0" layoutY="305.0" prefHeight="25.0" prefWidth="208.0" promptText=" Qty" />
       <Label layoutX="553.0" layoutY="2.0" prefHeight="24.0" prefWidth="169.0" text="Room Availability">
          <font>
             <Font name="Microsoft JhengHei UI Bold" size="18.0" />
          </font>
       </Label>
       <Line endX="-127.0" endY="33.0" layoutX="382.0" layoutY="60.0" startX="-127.0" startY="-45.0" />
-      <Text layoutX="319.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="RM-1324">
+      <Text fx:id="lblRoomId1" layoutX="319.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="RM-1324">
          <font>
             <Font name="Impact" size="15.0" />
          </font>
@@ -110,15 +108,15 @@
             <Font name="Impact" size="15.0" />
          </font>
       </Text>
-      <Label fx:id="lblRoomQty1" layoutX="333.0" layoutY="68.0" text="35" textFill="#751414">
+      <Label fx:id="lblRoomQty1" alignment="CENTER" layoutX="317.0" layoutY="68.0" prefHeight="28.0" prefWidth="51.0" textFill="#751414">
          <font>
             <Font name="Impact" size="22.0" />
          </font>
       </Label>
-      <Ellipse fx:id="lblRoomQty2" fill="#95a5a6c7" layoutX="474.0" layoutY="60.0" radiusX="61.0" radiusY="43.0" stroke="#d9d018" strokeType="INSIDE" />
+      <Ellipse fill="#95a5a6c7" layoutX="474.0" layoutY="60.0" radiusX="61.0" radiusY="43.0" stroke="#d9d018" strokeType="INSIDE" />
       <Ellipse fill="#95a5a6c7" layoutX="773.0" layoutY="57.0" radiusX="61.0" radiusY="43.0" stroke="#d9d018" strokeType="INSIDE" />
       <Ellipse fill="#95a5a6c7" layoutX="900.0" layoutY="58.0" radiusX="61.0" radiusY="43.0" stroke="#d9d018" strokeType="INSIDE" />
-      <Text layoutX="448.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="RM-5467">
+      <Text fx:id="lblRoomId2" layoutX="448.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="RM-5467">
          <font>
             <Font name="Impact" size="15.0" />
          </font>
@@ -128,12 +126,12 @@
             <Font name="Impact" size="15.0" />
          </font>
       </Text>
-      <Label layoutX="462.0" layoutY="64.0" text="20" textFill="#751414">
+      <Label fx:id="lblRoomQty2" alignment="CENTER" layoutX="448.0" layoutY="64.0" prefHeight="28.0" prefWidth="51.0" textFill="#751414">
          <font>
             <Font name="Impact" size="22.0" />
          </font>
       </Label>
-      <Text layoutX="747.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="RM-7896">
+      <Text fx:id="lblRoomid3" layoutX="747.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="RM-7896">
          <font>
             <Font name="Impact" size="15.0" />
          </font>
@@ -143,12 +141,12 @@
             <Font name="Impact" size="15.0" />
          </font>
       </Text>
-      <Label fx:id="lblRoomQty3" layoutX="761.0" layoutY="63.0" text="14" textFill="#751414">
+      <Label fx:id="lblRoomQty3" alignment="CENTER" layoutX="748.0" layoutY="63.0" prefHeight="28.0" prefWidth="53.0" textFill="#751414">
          <font>
             <Font name="Impact" size="22.0" />
          </font>
       </Label>
-      <Text layoutX="874.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="RM-0093">
+      <Text fx:id="lblRoomId4" layoutX="874.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="RM-0093">
          <font>
             <Font name="Impact" size="15.0" />
          </font>
@@ -158,27 +156,30 @@
             <Font name="Impact" size="15.0" />
          </font>
       </Text>
-      <Label fx:id="lblRoomQty4" layoutX="888.0" layoutY="66.0" text="10" textFill="#751414">
+      <Label fx:id="lblRoomQty4" alignment="CENTER" layoutX="878.0" layoutY="64.0" prefHeight="28.0" prefWidth="51.0" textFill="#751414">
          <font>
             <Font name="Impact" size="22.0" />
          </font>
       </Label>
-      <JFXButton fx:id="btnAddToRemain" layoutX="773.0" layoutY="301.0" onAction="#AddToRemainOnAction" prefHeight="34.0" prefWidth="200.0" style="-fx-background-color: #f1c40f;" text="Add to Remain Key-money">
+      <JFXButton fx:id="btnAddToRemain" layoutX="724.0" layoutY="302.0" onAction="#AddToRemainOnAction" prefHeight="34.0" prefWidth="239.0" style="-fx-background-color: #f1c40f;" text="View  Remain Key-money Student">
          <font>
             <Font name="Impact" size="16.0" />
          </font>
       </JFXButton>
-      <TextField fx:id="txtSearch" alignment="CENTER" layoutX="535.0" layoutY="118.0" onKeyReleased="#Search_On_Key_Released" prefHeight="25.0" prefWidth="423.0" promptText="Search " />
-      <ImageView fitHeight="25.0" fitWidth="24.0" layoutX="535.0" layoutY="118.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../assert/icons8-search-24.png" />
-         </image>
-      </ImageView>
       <Label fx:id="lblReserveID" alignment="CENTER" layoutX="176.0" layoutY="122.0" prefHeight="24.0" prefWidth="182.0" text="RID">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Text layoutX="584.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Available" />
+      <Text fill="#322579" layoutX="559.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Available=Yes">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Text>
+      <Text fill="#322579" layoutX="559.0" layoutY="84.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Unavailable=No">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

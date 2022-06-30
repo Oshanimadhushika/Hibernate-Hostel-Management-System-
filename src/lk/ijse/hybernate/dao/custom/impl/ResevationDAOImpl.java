@@ -1,15 +1,20 @@
 package lk.ijse.hybernate.dao.custom.impl;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import lk.ijse.hybernate.dao.custom.ReservationDAO;
+import lk.ijse.hybernate.dto.RemainKeyMnyDTO;
 import lk.ijse.hybernate.entity.Reservation;
 import lk.ijse.hybernate.entity.Student;
 import lk.ijse.hybernate.util.FactoryConfiguration;
+import lk.ijse.hybernate.view.tdm.RemainKeyMnyTM;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ResevationDAOImpl implements ReservationDAO {
@@ -121,6 +126,43 @@ public class ResevationDAOImpl implements ReservationDAO {
         return reservation;
     }
 
+
+    @Override
+    public ArrayList<Reservation> searchReservation(String enteredText) throws SQLException, ClassNotFoundException {
+        return null;
+    }
+
+    @Override
+    public ObservableList<RemainKeyMnyTM> getRemainKeyMoney() throws IOException {
+
+      /*  Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        Query query = session.createQuery("SELECT s.student_id,s.studentName,r.status FROM student s JOIN Reservation r ON r.student = s.student_id  WHERE r.status= : y");
+
+
+        List<RemainKeyMnyDTO> list = query.setParameter("y", "Paid Later").list();
+        //List <RemainKeyMnyDTO> list = session.createQuery("FROM Reservation WHERE status = 'Paid Later'").list();
+
+
+        transaction.commit();
+        session.close();
+        return list;*/
+
+        ObservableList<RemainKeyMnyTM> students = FXCollections.observableArrayList();
+
+        Session session = FactoryConfiguration.getInstance().getSession();
+        List <Reservation>list = session.createQuery("FROM Reservation WHERE status = 'Paid Later'").list();
+
+        for(Reservation reserve : list){
+            String studentId = reserve.getStudent().getStudent_id();
+            String name = reserve.getStudent().getStudentName();
+            String status = reserve.getStatus();
+
+
+            students.add(new RemainKeyMnyTM(studentId,name,status));
+        }
+        return students;
+    }
 
 
 }
